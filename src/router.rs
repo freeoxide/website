@@ -1,6 +1,7 @@
-use dioxus::{logger::tracing, prelude::*};
+use dioxus::prelude::*;
 
 use crate::screens::*;
+use crate::config;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
@@ -33,7 +34,7 @@ pub fn create_sitemap() {
     server_only! {
         eprintln!("create_sitemap server_only");
         use std::io::Write;
-        let domain = "https://freeoxide.com";
+        let domain = config::DOMAIN;
         // Write a sitemap file on the server
         // The sitemap helps with SEO because google will deprioritize pages it finds that are not in the sitemap
         let all_routes = Route::static_routes();

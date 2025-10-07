@@ -1,8 +1,11 @@
 pub const DOMAIN: &str = "https://freeoxide.com";
+pub const SITE_NAME: &str = "Freeoxide";
+pub const TAGLINE: &str = "Freedom and open source Rust based software tools";
 pub const TITLE: &str = "Freeoxide - Freedom and open source Rust based software tools";
 pub const DESCRIPTION: &str = "Freeoxide provides freedom and open source software tools built with Rust.";
 pub const KEYWORDS: &str = "rust, open source, software tools, diy, home security";
 pub const AUTHOR: &str = "hmziqrs";
+pub const AUTHOR_LINK: &str = "https://hmziq.rs";
 
 #[derive(Debug, Clone)]
 pub struct Project {
