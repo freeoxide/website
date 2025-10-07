@@ -10,14 +10,17 @@ pub fn HomeScreen() -> Element {
                 h3 { class: "text-xl", "{config::TAGLINE}" }
             }
             div { class: "flex-1 flex items-center justify-center px-4",
-                p { class: "text-lg text-center",
-                    "Currently working on "
-                    a { class: "underline",
-                        href: "{config::PROJECTS[0].url}",
-                        target: "_blank",
-                        "{config::PROJECTS[0].name}"
+                div { class: "text-center",
+                    p { class: "text-lg mb-4", "Currently working on:" }
+                    for project in config::PROJECTS.iter() {
+                        p { class: "text-md",
+                            a { class: "underline",
+                                href: "{project.url}",
+                                target: "_blank",
+                                "{project.name}"
+                            }
+                        }
                     }
-                    "."
                 }
             }
             footer { class: "text-center py-4",
