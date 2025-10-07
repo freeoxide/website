@@ -9,7 +9,7 @@ edition = "2021"
 [dependencies]
 dioxus = { version = "0.7.0-rc.0", features = ["router", "fullstack"] }
 dioxus-isrg = { version = "0.7.0-rc.0" }
-askama_escape = { version = "0.10.3", optional = true }
+askama_escape = { version = "0.13.0", optional = true }
 
 
 [features]
@@ -17,4 +17,4 @@ default = ["web"]
 web = ["dioxus/web"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
-server = ["dioxus/server"]
+server = ["dioxus/server", "dioxus/ssr", "dep:askama_escape"]

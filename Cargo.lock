@@ -64,12 +64,6 @@ dependencies = [
 
 [[package]]
 name = "askama_escape"
-version = "0.10.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "619743e34b5ba4e9703bba34deac3427c72507c7159f5fd030aea8cac0cfe341"
-
-[[package]]
-name = "askama_escape"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3df27b8d5ddb458c5fb1bbc1ce172d4a38c614a97d550b0ac89003897fb01de4"
@@ -1281,7 +1275,7 @@ version = "0.7.0-rc.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "21c377da1f2ea708be1112dd61189d6dcd19c8db25208b750c3849f760fa854d"
 dependencies = [
- "askama_escape 0.13.0",
+ "askama_escape",
  "dioxus-core",
  "dioxus-core-types",
  "rustc-hash 2.1.1",
@@ -5489,7 +5483,7 @@ dependencies = [
 name = "website"
 version = "0.1.0"
 dependencies = [
- "askama_escape 0.10.3",
+ "askama_escape",
  "dioxus",
  "dioxus-isrg",
 ]
