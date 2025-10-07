@@ -1,4 +1,4 @@
-use dioxus::{logger::tracing, prelude::*};
+use dioxus::prelude::*;
 
 pub mod router;
 pub mod screens;
@@ -6,24 +6,20 @@ pub mod screens;
 fn main() {
     router::create_sitemap();
 
-    // dioxus::launch(App);
     dioxus::LaunchBuilder::new()
-        // Set the server config only if we are building the server target
         .with_cfg(server_only! {
-            ServeConfig::builder()
-                // Enable incremental rendering
+            dioxus::server::ServeConfig::builder()
                 .incremental(
-                    IncrementalRendererConfig::new()
-                        // Store static files in the public directory where other static assets like wasm are stored
+                    dioxus_isrg::IncrementalRendererConfig::new()
                         .static_dir(router::static_dir())
-                        // Don't clear the public folder on every build. The public folder has other files including the wasm
-                        // binary and static assets required for the app to run
                         .clear_cache(false)
                 )
                 .enable_out_of_order_streaming()
         })
         .launch(App);
 }
+
+const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
 
 #[component]
 fn App() -> Element {
@@ -41,9 +37,7 @@ fn App() -> Element {
             rel: "stylesheet",
             href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..600&family=Geist:wght@400..600&display=swap"
         }
-        document::Link {
-            rel: "stylesheet", href: asset!("/assets/tailwind.css")
-        }
+        document::Link { rel: "stylesheet", href: TAILWIND_CSS }
 
         Router::<crate::router::Route> {}
     }
