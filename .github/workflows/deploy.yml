@@ -67,26 +67,6 @@ jobs:
             cargo binstall dioxus-cli@0.7.0-rc.0 --no-confirm
           fi
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Fetch GitHub activity data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Fetching GitHub activity data..."
-          bun scripts/github-activity.ts
-
-          # Verify the data was fetched
-          if [ -f "assets/github-activity.json" ]; then
-            echo "✅ GitHub activity data successfully fetched"
-          else
-            echo "❌ Error: GitHub activity data file not found"
-            exit 1
-          fi
-
       - name: Build static site
         run: |
           dx build --release
