@@ -18,6 +18,6 @@ pub struct Project {
 pub const PROJECTS: [Project; 1] = [Project {
     name: "DIY door alarm system",
     description: "A DIY full stack door alarm system including mobile app, web app, dashboard, and e2e realtime client server communication.",
-    url: "https://freeoxide.com",
-    github: "https://github.com/freeoxide/home-security",
+    url: "https://github.com/freeoxide/pi-door-security",
+    github: "https://github.com/freeoxide/pi-door-security",
 }];
