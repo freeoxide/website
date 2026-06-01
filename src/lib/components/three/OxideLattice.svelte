@@ -487,7 +487,7 @@
 <div bind:this={containerEl} class={containerClass}>
   {#if showHud}
     <div class="lattice-hud" aria-hidden="true">
-      <div class="lh-row"><span class="lh-k">lattice</span>α‑Fe₂O₃ · hematite</div>
+      <div class="lh-row"><span class="lh-k">lattice</span> α‑Fe₂O₃ · hematite</div>
       <div class="lh-row"><span class="lh-k">cell</span><span bind:this={hudCell}>…</span></div>
       <div class="lh-row"><span class="lh-k">probe</span><span class="lh-probe" bind:this={hudProbe}>idle — drag to rotate</span></div>
     </div>
@@ -495,16 +495,7 @@
 </div>
 
 <style>
-  .hero-3d {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .hero-3d :global(canvas) {
+  :global(.hero-3d canvas) {
     display: block;
-    width: 100% !important;
-    height: 100% !important;
   }
 </style>

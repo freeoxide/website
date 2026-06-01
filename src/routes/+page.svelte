@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import Statusbar from '$lib/components/landing/Statusbar.svelte';
   import BootSequence from '$lib/components/landing/BootSequence.svelte';
   import Typewriter from '$lib/components/landing/Typewriter.svelte';
@@ -12,7 +13,7 @@
   import Footer from '$lib/components/landing/Footer.svelte';
   import CrtOverlay from '$lib/components/landing/CrtOverlay.svelte';
   import TweaksPanel from '$lib/components/landing/TweaksPanel.svelte';
-  import { reveal } from '$lib/components/landing/ScrollReveal.svelte';
+
   import { getState as getTheme, TAGLINES, FONTS } from '$lib/stores/theme.svelte';
 
   const theme = getTheme();
@@ -24,6 +25,50 @@
   $effect(() => {
     const mono = FONTS[theme.font] ?? FONTS['jetbrains'];
     document.documentElement.style.setProperty('--mono', mono);
+  });
+
+  // Global reveal observer — catches ALL .reveal elements including
+  // those inside child components that don't use the action directly.
+  onMount(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.06 }
+    );
+
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => observer.observe(el));
+
+    // Catch dynamically added .reveal elements (e.g. from {#if} blocks)
+    const mutObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node instanceof HTMLElement) {
+            if (node.classList.contains('reveal') && !node.classList.contains('in')) {
+              observer.observe(node);
+            }
+            node.querySelectorAll?.('.reveal:not(.in)').forEach((el) => observer.observe(el));
+          }
+        }
+      }
+    });
+    mutObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutObserver.disconnect();
+    };
   });
 </script>
 
@@ -55,29 +100,27 @@
         <BootSequence onComplete={() => (bootComplete = true)} />
       {/if}
 
-      <div class="wordmark reveal" use:reveal>
-        <Wordmark />
-      </div>
+      <Wordmark />
 
       {#if bootComplete}
-        <p class="tagline reveal" use:reveal>
+        <p class="tagline reveal">
           <Typewriter text={TAGLINES[theme.tagline]} />
         </p>
       {/if}
 
-      <p class="lede reveal" use:reveal>
+      <p class="lede reveal">
         <span class="hi">A one-person initiative for open-source Rust.</span>
         I build the tools I wish existed — then open them, and hold each one to the
         same bar: tested until it's boring, audited until there's nothing left to find.
       </p>
 
-      <div class="cta-row reveal" use:reveal>
+      <div class="cta-row reveal">
         <a class="btn lg" href="#projects">browse the projects →</a>
         <a class="btn lg ghost" href="#manifesto">./manifesto.md</a>
         <a class="btn lg ghost" href="https://github.com" target="_blank" rel="noopener">github ↗</a>
       </div>
 
-      <div class="stats reveal" use:reveal>
+      <div class="stats reveal">
         <div class="stat"><div class="v">4–5×</div><div class="k">audit passes / project</div></div>
         <div class="stat"><div class="v">5–8</div><div class="k">AI edge-case rounds</div></div>
         <div class="stat"><div class="v">&gt;90%</div><div class="k">coverage floor</div></div>
