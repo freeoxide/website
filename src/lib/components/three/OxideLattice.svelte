@@ -3,17 +3,12 @@
   import * as THREE from 'three';
 
   let {
-    containerClass = 'hero-3d',
-    showHud = true
+    containerClass = 'hero-3d'
   }: {
     containerClass?: string;
-    showHud?: boolean;
   } = $props();
 
   let containerEl: HTMLDivElement | undefined = $state();
-  let hudLattice: HTMLSpanElement | undefined = $state();
-  let hudCell: HTMLSpanElement | undefined = $state();
-  let hudProbe: HTMLSpanElement | undefined = $state();
 
   // Disposables collected for cleanup
   const disposables: { dispose(): void }[] = [];
@@ -302,8 +297,9 @@
     scene.add(ring);
 
     // ── HUD setup ───────────────────────────────────────────────────────────
-    if (hudCell) {
-      hudCell.textContent = `${feLocal.length} Fe · ${oLocal.length} O · ${bondCount} bonds`;
+    const countsEl = document.getElementById('lh-counts');
+    if (countsEl) {
+      countsEl.textContent = `${feLocal.length} Fe · ${oLocal.length} O · ${bondCount} bonds`;
     }
 
     // ── theme sync ──────────────────────────────────────────────────────────
@@ -381,7 +377,8 @@
     function probe(): void {
       if (!hoverNDC) {
         ring.visible = false;
-        if (hudProbe && !drag) hudProbe.textContent = 'idle — drag to rotate';
+        const probeEl = document.getElementById('lh-probe');
+        if (probeEl && !drag) probeEl.textContent = 'idle — drag to rotate';
         return;
       }
       ndcVec2.set(hoverNDC.x, hoverNDC.y);
@@ -397,8 +394,9 @@
         group.localToWorld(tmp);
         ring.position.copy(tmp);
         ring.visible = true;
-        if (hudProbe) {
-          hudProbe.textContent =
+        const probeEl2 = document.getElementById('lh-probe');
+        if (probeEl2) {
+          probeEl2.textContent =
             'node 0x' +
             idx.toString(16).padStart(2, '0') +
             ' — ' +
@@ -408,7 +406,8 @@
         }
       } else {
         ring.visible = false;
-        if (hudProbe && !drag) hudProbe.textContent = 'idle — drag to rotate';
+        const probeEl = document.getElementById('lh-probe');
+        if (probeEl && !drag) probeEl.textContent = 'idle — drag to rotate';
       }
     }
 
@@ -484,15 +483,7 @@
   });
 </script>
 
-<div bind:this={containerEl} class={containerClass}>
-  {#if showHud}
-    <div class="lattice-hud" aria-hidden="true">
-      <div class="lh-row"><span class="lh-k">lattice</span> α‑Fe₂O₃ · hematite</div>
-      <div class="lh-row"><span class="lh-k">cell</span><span bind:this={hudCell}>…</span></div>
-      <div class="lh-row"><span class="lh-k">probe</span><span class="lh-probe" bind:this={hudProbe}>idle — drag to rotate</span></div>
-    </div>
-  {/if}
-</div>
+<div bind:this={containerEl} class={containerClass}></div>
 
 <style>
   :global(.hero-3d canvas) {

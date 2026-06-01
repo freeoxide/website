@@ -95,6 +95,11 @@
     <!-- HERO SECTION -->
     <section class="hero" data-screen-label="hero">
       <OxideLattice />
+      <div class="lattice-hud" aria-hidden="true">
+        <div class="lh-row"><span class="lh-k">lattice</span> α‑Fe₂O₃ · hematite</div>
+        <div class="lh-row"><span class="lh-k">cell</span><span id="lh-counts">…</span></div>
+        <div class="lh-row"><span class="lh-k">probe</span><span id="lh-probe">idle — drag to rotate</span></div>
+      </div>
 
       {#if !bootComplete}
         <BootSequence onComplete={() => (bootComplete = true)} />
