@@ -4,15 +4,23 @@
 	import { type VariantProps, tv } from "tailwind-variants";
 
 	export const badgeVariants = tv({
-		base: "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+		base: "inline-flex items-center font-mono text-[11px] font-bold tracking-[0.04em] lowercase px-2 py-[3px] rounded-full border whitespace-nowrap select-none",
 		variants: {
 			variant: {
-				default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+				default:
+					"border-transparent bg-primary text-primary-foreground",
 				secondary:
-					"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+					"border-transparent bg-secondary text-secondary-foreground",
 				destructive:
-					"border-transparent bg-destructive text-white shadow hover:bg-destructive/80",
-				outline: "text-foreground",
+					"border-transparent bg-destructive text-white",
+				outline:
+					"text-foreground border-border",
+				shipped:
+					"text-crt-ok border-crt-ok before:content-['●_']",
+				wip:
+					"text-crt-warn border-crt-warn before:content-['◐_']",
+				planned:
+					"text-muted-foreground border-muted-foreground before:content-['○_']",
 			},
 		},
 		defaultVariants: {

@@ -1,20 +1,25 @@
-<section id="contribute" data-screen-label="contribute">
-  <div class="sec-cmd">
-    <span class="prompt"></span>
-    <span class="cmdline">freeoxide contribute</span>
-    <span class="out">prs welcome</span>
-  </div>
-  <h2 class="h2 reveal">Get involved</h2>
-  <p class="sub reveal">It's one person right now — which means a single good PR genuinely moves things. Here's where to start.</p>
-  <div class="steps">
-    <div class="step reveal"><span class="sn">01</span><span class="st">Browse what exists.<span class="sd">Start in the project list. Read the code, the tests, the audit notes. Open an issue the moment something smells off.</span></span></div>
-    <div class="step reveal"><span class="sn">02</span><span class="st">Raise the bar, don't just add to it.<span class="sd">The most welcome PRs add a test, kill an edge case, or make the structure simpler — not just bigger.</span></span></div>
-    <div class="step reveal"><span class="sn">03</span><span class="st">Submit a project.<span class="sd">Built something to this standard? Propose it. It runs through the same audit passes before it carries the freeoxide name.</span></span></div>
-    <div class="step reveal"><span class="sn">04</span><span class="st">Build in public with me.<span class="sd">Most of this happens in the open. Follow along, argue with the decisions, suggest the next tool worth building.</span></span></div>
-  </div>
-  <div class="contribute-cta reveal">
-    <a class="btn lg" href="#projects">browse the projects →</a>
-    <a class="btn lg ghost" href="https://github.com" target="_blank" rel="noopener">github ↗</a>
-    <span class="comment" style="margin:0;">good first issues are tagged.</span>
-  </div>
+<script lang="ts">
+	import { SectionCmd } from '$lib/components/ui/section-cmd';
+	import { SectionHeading } from '$lib/components/ui/section-heading';
+	import { StepItem } from '$lib/components/ui/step-item';
+	import { Button } from '$lib/components/ui/button';
+</script>
+
+<section id="contribute" data-screen-label="contribute" class="py-14 border-b border-dashed border-border last:border-b-0">
+	<SectionCmd command="freeoxide contribute" output="prs welcome" />
+	<SectionHeading
+		text="Get involved"
+		sub="It's one person right now — which means a single good PR genuinely moves things. Here's where to start."
+	/>
+	<div class="grid gap-2.5 max-w-[72ch]">
+		<div class="reveal"><StepItem number="01" title="Browse what exists." description="Start in the project list. Read the code, the tests, the audit notes. Open an issue the moment something smells off." /></div>
+		<div class="reveal"><StepItem number="02" title="Raise the bar, don't just add to it." description="The most welcome PRs add a test, kill an edge case, or make the structure simpler — not just bigger." /></div>
+		<div class="reveal"><StepItem number="03" title="Submit a project." description="Built something to this standard? Propose it. It runs through the same audit passes before it carries the freeoxide name." /></div>
+		<div class="reveal"><StepItem number="04" title="Build in public with me." description="Most of this happens in the open. Follow along, argue with the decisions, suggest the next tool worth building." /></div>
+	</div>
+	<div class="mt-6 flex gap-3 flex-wrap items-center reveal">
+		<Button variant="default" size="lg" href="#projects">browse the projects →</Button>
+		<Button variant="outline" size="lg" href="https://github.com" target="_blank" rel="noopener">github ↗</Button>
+		<span class="text-crt-faint before:content-['# '] m-0">good first issues are tagged.</span>
+	</div>
 </section>

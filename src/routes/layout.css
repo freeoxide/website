@@ -362,23 +362,22 @@
 		font-feature-settings: "calt" 1, "liga" 1;
 		letter-spacing: 0.01em;
 	}
+
+	::selection { background: var(--crt-sel-bg); }
+
+	a { color: var(--crt-link); text-decoration: none; }
+	a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
-::selection { background: var(--crt-sel-bg); }
-
-a { color: var(--crt-link); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
 /* ============================================================
-   CRT CONTAINER
+   CRT GLOW — phosphor/amber text-shadow
    ============================================================ */
-.crt { position: relative; min-height: 100vh; overflow-x: clip; background: var(--background); }
-
 [data-theme="phosphor"] .glowable,
 [data-theme="amber"] .glowable { text-shadow: var(--crt-glow); }
 
 /* ============================================================
-   CRT EFFECTS — Scanlines + Vignette
+   CRT EFFECTS — Scanlines + Vignette + Flicker
+   These use pseudo-elements and keyframes — no Tailwind equivalent.
    ============================================================ */
 .fx {
 	pointer-events: none;
@@ -423,79 +422,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .flicker .fx-flicker { animation: crtflicker 7s linear infinite; }
 
 /* ============================================================
-   STATUS BAR
-   ============================================================ */
-.statusbar {
-	position: sticky;
-	top: 0;
-	z-index: 8000;
-	display: flex;
-	align-items: center;
-	gap: 18px;
-	padding: 10px var(--gutter);
-	background: color-mix(in srgb, var(--background) 86%, transparent);
-	backdrop-filter: blur(8px);
-	border-bottom: 1px solid var(--border);
-}
-.sb-brand { display: flex; align-items: center; gap: 10px; color: var(--foreground); }
-.sb-mark { width: 22px; height: 22px; color: var(--primary); display: block; }
-.sb-mark svg { width: 100%; height: 100%; display: block; }
-.sb-name { font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; }
-.sb-name .tilde { color: var(--muted-foreground); font-weight: 400; }
-
-.sb-nav { display: flex; gap: 4px; margin-left: 8px; }
-.sb-nav a {
-	color: var(--muted-foreground);
-	padding: 4px 10px;
-	border-radius: 4px;
-	font-size: 13px;
-}
-.sb-nav a:hover { color: var(--primary); background: var(--card); text-decoration: none; }
-.sb-nav a::before { content: ""; }
-
-.sb-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-.sb-status { color: var(--muted-foreground); font-size: 12.5px; display: flex; align-items: center; gap: 7px; }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--crt-ok); box-shadow: 0 0 8px var(--crt-ok); }
-@keyframes pulse { 50% { opacity: 0.35; } }
-.dot { animation: pulse 2.4s ease-in-out infinite; }
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-.btn {
-	display: inline-flex; align-items: center; gap: 8px;
-	font-family: var(--mono); font-size: 13px; font-weight: 600;
-	color: var(--primary-foreground, var(--background)); background: var(--primary);
-	border: 1px solid var(--primary);
-	padding: 7px 14px; border-radius: 5px;
-	cursor: pointer; transition: transform .08s ease, filter .15s ease;
-	white-space: nowrap; text-decoration: none;
-}
-.btn:hover { filter: brightness(1.08); text-decoration: none; transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
-.btn.ghost { color: var(--foreground); background: transparent; border-color: var(--input); }
-.btn.ghost:hover { border-color: var(--primary); color: var(--primary); filter: none; }
-.btn.lg { font-size: 14.5px; padding: 11px 20px; }
-
-/* ============================================================
-   SESSION / LAYOUT
-   ============================================================ */
-.session { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter) 80px; }
-section { padding: 56px 0; border-bottom: 1px dashed var(--border); }
-section:last-of-type { border-bottom: none; }
-
-/* ============================================================
-   PROMPT / COMMAND STYLING
-   ============================================================ */
-.prompt { color: var(--primary); margin-right: 8px; }
-.prompt::before { content: "$"; }
-.cmdline { color: var(--foreground); }
-.sec-cmd .cmdline { white-space: nowrap; }
-.cmdline .arg { color: var(--secondary); }
-.cmdline .flag { color: var(--muted-foreground); }
-
-/* ============================================================
-   CURSOR BLINK
+   CURSOR BLINK — used by Footer
    ============================================================ */
 .cursor {
 	display: inline-block;
@@ -506,30 +433,25 @@ section:last-of-type { border-bottom: none; }
 	animation: blink 1.05s steps(1) infinite;
 	box-shadow: var(--crt-glow);
 }
+
+/* ============================================================
+   KEYFRAMES — shared by multiple components
+   ============================================================ */
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse { 50% { opacity: 0.35; } }
+@keyframes bootln { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+.bootln { animation: bootln .22s ease both; }
 
 /* ============================================================
-   SECTION COMMAND HEADER
+   REVEAL ANIMATION — driven by IntersectionObserver in +page.svelte
    ============================================================ */
-.sec-cmd {
-	font-size: 14px;
-	color: var(--muted-foreground);
-	margin-bottom: 26px;
-	display: flex; align-items: baseline; gap: 0;
-}
-.sec-cmd .out { color: var(--crt-faint); margin-left: auto; font-size: 12.5px; }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
 
 /* ============================================================
-   COMMENT
+   3D LATTICE — structural positioning for OxideLattice
+   Uses mask-image which has no Tailwind equivalent.
    ============================================================ */
-.comment { color: var(--crt-faint); }
-.comment::before { content: "# "; }
-
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
-.hero { position: relative; padding-top: 52px; padding-bottom: 64px; }
-.hero > *:not(.hero-3d) { position: relative; z-index: 1; }
 .hero-3d {
 	position: absolute; top: -28px; bottom: -8px;
 	left: 50%; transform: translateX(-50%);
@@ -542,244 +464,11 @@ section:last-of-type { border-bottom: none; }
 }
 .hero-3d.grabbing { cursor: grabbing; }
 
-/* Lattice HUD */
-.lattice-hud {
-	position: absolute; top: 4px; right: 0; z-index: 1;
-	text-align: right; pointer-events: none; user-select: none;
-	font-size: 11.5px; line-height: 1.7; letter-spacing: 0.02em;
-	color: var(--crt-faint);
-	display: flex; flex-direction: column; gap: 0;
-}
-.lattice-hud .lh-k { color: var(--muted-foreground); }
-.lattice-hud .lh-k::after { content: " ›"; color: var(--primary); margin: 0 2px 0 1px; }
-.lattice-hud .lh-probe { color: var(--muted-foreground); }
-@media (max-width: 820px) { .lattice-hud { display: none; } }
-@media (prefers-reduced-motion: reduce) { .hero-3d { opacity: 0.85; } }
-
-.boot { margin-bottom: 30px; font-size: 13.5px; min-height: 132px; }
-.boot .ln { display: block; white-space: pre-wrap; animation: bootln .22s ease both; }
-@keyframes bootln { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
-.tag-ok  { color: var(--crt-ok); }
-.tag-warn{ color: var(--crt-warn); }
-.boot .muted { color: var(--muted-foreground); }
-
-.wordmark {
-	display: flex; align-items: center; gap: 22px;
-	margin: 8px 0 18px;
-}
-.wordmark .hex { width: clamp(58px, 9vw, 92px); height: clamp(58px, 9vw, 92px); color: var(--primary); flex: none; }
-.wordmark .hex svg { width: 100%; height: 100%; display: block; filter: drop-shadow(var(--crt-glow)); }
-.wordmark h1 {
-	margin: 0;
-	font-size: clamp(38px, 8.2vw, 88px);
-	line-height: 0.92;
-	font-weight: 800;
-	letter-spacing: -0.02em;
-	color: var(--foreground);
-	white-space: nowrap;
-}
-.wordmark h1 .free { color: var(--foreground); }
-.wordmark h1 .oxide { color: var(--primary); }
-.wordmark h1 .dash { color: var(--muted-foreground); }
-
-.tagline {
-	font-size: clamp(18px, 2.6vw, 26px);
-	color: var(--foreground);
-	margin: 0 0 14px;
-	font-weight: 500;
-	min-height: 1.4em;
-}
-.tagline .c { color: var(--primary); }
-
-.lede {
-	max-width: 60ch;
-	color: var(--muted-foreground);
-	font-size: clamp(14px, 1.7vw, 16px);
-	margin: 0 0 30px;
-	text-wrap: pretty;
-}
-.lede .hi { color: var(--foreground); }
-
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-
 /* ============================================================
-   STATS STRIP
+   REDUCED MOTION — accessibility
    ============================================================ */
-.stats {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 1px;
-	background: var(--border);
-	border: 1px solid var(--border);
-	border-radius: 8px;
-	overflow: hidden;
-	margin-top: 40px;
-}
-.stat { background: var(--card); padding: 18px 20px; }
-.stat .v { font-size: clamp(22px, 3vw, 30px); font-weight: 800; color: var(--primary); letter-spacing: -0.01em; }
-.stat .k { font-size: 12px; color: var(--muted-foreground); margin-top: 2px; }
-@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-
-/* ============================================================
-   SECTION HEADINGS
-   ============================================================ */
-.h2 {
-	font-size: clamp(22px, 3.2vw, 30px);
-	font-weight: 800; color: var(--foreground);
-	margin: 0 0 10px; letter-spacing: -0.01em;
-}
-.sub { color: var(--muted-foreground); max-width: 64ch; margin: 0 0 30px; text-wrap: pretty; }
-
-/* ============================================================
-   MANIFESTO
-   ============================================================ */
-.manifesto-body { max-width: 68ch; }
-.manifesto-body p { color: var(--foreground); margin: 0 0 18px; text-wrap: pretty; }
-.manifesto-body p .dim { color: var(--muted-foreground); }
-.manifesto-body .sig { color: var(--muted-foreground); margin-top: 26px; }
-.manifesto-body .sig .accent { color: var(--primary); }
-
-.ascii-rule {
-	color: var(--crt-faint);
-	white-space: pre; overflow: hidden;
-	font-size: 13px; line-height: 1; margin: 8px 0 26px;
-	user-select: none;
-}
-
-/* ============================================================
-   STANDARDS — checklist
-   ============================================================ */
-.checklist { display: grid; gap: 2px; max-width: 76ch; }
-.check {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	gap: 14px;
-	align-items: start;
-	padding: 13px 16px;
-	border: 1px solid var(--border);
-	border-radius: 7px;
-	background: var(--card);
-	transition: border-color .15s ease, background .15s ease;
-}
-.check:hover { border-color: var(--input); background: var(--muted); }
-.check .box { color: var(--crt-ok); font-weight: 700; text-shadow: var(--crt-glow); }
-.check .ct { color: var(--foreground); }
-.check .ct b { color: var(--primary); font-weight: 700; }
-.check .cd { color: var(--muted-foreground); font-size: 13px; display: block; margin-top: 2px; }
-
-/* ============================================================
-   TESTING — two columns + audit ladder
-   ============================================================ */
-.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 760px) { .cols2 { grid-template-columns: 1fr; } }
-.panel {
-	border: 1px solid var(--border);
-	border-radius: 9px;
-	background: var(--card);
-	overflow: hidden;
-}
-.panel-hd {
-	display: flex; align-items: center; gap: 10px;
-	padding: 11px 16px;
-	border-bottom: 1px solid var(--border);
-	background: var(--muted);
-	font-size: 13px;
-}
-.panel-hd .tl { display: flex; gap: 6px; }
-.panel-hd .tl i { width: 10px; height: 10px; border-radius: 50%; display: block; opacity: 0.8; }
-.tl .r { background: var(--destructive); } .tl .y { background: var(--crt-warn); } .tl .g { background: var(--crt-ok); }
-.panel-hd .ttl { color: var(--muted-foreground); margin-left: 4px; white-space: nowrap; }
-.panel-bd { padding: 16px; }
-.panel-bd p { margin: 0 0 12px; color: var(--muted-foreground); }
-.panel-bd p:last-child { margin-bottom: 0; }
-.panel-bd .hi { color: var(--foreground); }
-
-.ladder { display: grid; gap: 7px; margin-top: 6px; }
-.rung {
-	display: grid; grid-template-columns: auto auto 1fr; gap: 12px; align-items: baseline;
-	padding: 9px 12px; border-radius: 6px; background: var(--muted);
-	font-size: 13px;
-}
-.rung .n { color: var(--primary); font-weight: 700; white-space: nowrap; }
-.rung .lbl { color: var(--foreground); white-space: nowrap; }
-.rung .find { color: var(--muted-foreground); }
-.rung .find b { color: var(--secondary); font-weight: 600; }
-
-/* ============================================================
-   PROJECTS
-   ============================================================ */
-.proj-list { display: grid; gap: 12px; }
-.proj {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	gap: 8px 18px;
-	align-items: center;
-	padding: 18px 20px;
-	border: 1px solid var(--border);
-	border-radius: 9px;
-	background: var(--card);
-	transition: border-color .15s ease, transform .12s ease, background .15s ease;
-}
-.proj:hover { border-color: var(--primary); transform: translateY(-2px); background: var(--muted); }
-.proj .pname { font-size: 17px; font-weight: 700; color: var(--foreground); display: flex; align-items: center; gap: 10px; }
-.proj .pname .star { color: var(--muted-foreground); font-weight: 400; font-size: 13px; }
-.proj .pdesc { color: var(--muted-foreground); font-size: 13.5px; grid-column: 1 / 2; text-wrap: pretty; }
-.proj .pmeta { color: var(--crt-faint); font-size: 12px; grid-column: 1 / 2; display: flex; gap: 16px; flex-wrap: wrap; }
-.proj .pmeta span b { color: var(--muted-foreground); font-weight: 600; }
-
-.badge {
-	font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-	padding: 4px 9px; border-radius: 20px; text-transform: lowercase;
-	border: 1px solid currentColor; white-space: nowrap;
-	grid-row: 1; grid-column: 2; align-self: start;
-}
-.badge.shipped { color: var(--crt-ok); }
-.badge.wip { color: var(--crt-warn); }
-.badge.planned { color: var(--muted-foreground); }
-.badge.shipped::before { content: "● "; }
-.badge.wip::before { content: "◐ "; }
-.badge.planned::before { content: "○ "; }
-
-/* ============================================================
-   CONTRIBUTE
-   ============================================================ */
-.steps { display: grid; gap: 10px; max-width: 72ch; }
-.step {
-	display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
-	padding: 15px 18px; border: 1px solid var(--border); border-radius: 8px; background: var(--card);
-}
-.step .sn {
-	color: var(--primary); font-weight: 800; font-variant-numeric: tabular-nums;
-}
-.step .st { color: var(--foreground); font-weight: 600; }
-.step .sd { color: var(--muted-foreground); font-size: 13.5px; display: block; margin-top: 3px; text-wrap: pretty; }
-
-.contribute-cta {
-	margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.foot {
-	max-width: var(--maxw); margin: 0 auto; padding: 30px var(--gutter) 60px;
-	display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: flex-start;
-	border-top: 1px solid var(--border);
-}
-.foot .fcol { display: grid; gap: 6px; }
-.foot .fhd { color: var(--crt-faint); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-.foot a { color: var(--muted-foreground); font-size: 13.5px; }
-.foot a:hover { color: var(--primary); }
-.foot .fend { margin-left: auto; color: var(--crt-faint); font-size: 12.5px; text-align: right; max-width: 30ch; }
-.foot .fend .lic { color: var(--muted-foreground); }
-
-/* ============================================================
-   REVEAL ANIMATION
-   ============================================================ */
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
 @media (prefers-reduced-motion: reduce) {
 	.reveal { opacity: 1; transform: none; transition: none; }
-	.cursor, .dot, .flicker .fx-flicker { animation: none; }
+	.cursor { animation: none; }
+	.hero-3d { opacity: 0.85; }
 }

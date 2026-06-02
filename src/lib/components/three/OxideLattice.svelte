@@ -304,12 +304,12 @@
 
     // ── theme sync ──────────────────────────────────────────────────────────
     function applyTheme(): void {
-      feMat.color.set(cssv('--accent', '#f26419'));
-      oMat.color.set(cssv('--fg-dim', '#9a8c7b'));
-      bondMat.color.set(cssv('--border-2', '#4a3d2d'));
-      cageMat.color.set(cssv('--accent-2', '#ffa05c'));
-      ringMat.color.set(cssv('--accent', '#f26419'));
-      scene.fog!.color.set(cssv('--bg', '#15100c'));
+      feMat.color.set(cssv('--primary', '#f26419'));
+      oMat.color.set(cssv('--muted-foreground', '#9a8c7b'));
+      bondMat.color.set(cssv('--input', '#4a3d2d'));
+      cageMat.color.set(cssv('--secondary', '#ffa05c'));
+      ringMat.color.set(cssv('--primary', '#f26419'));
+      scene.fog!.color.set(cssv('--background', '#15100c'));
     }
     applyTheme();
 

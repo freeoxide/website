@@ -1,21 +1,36 @@
 <script lang="ts">
-  import HexMark from './HexMark.svelte';
+	import HexMark from './HexMark.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import { StatusDot } from '$lib/components/ui/status-dot';
 </script>
 
-<header class="statusbar">
-  <a class="sb-brand" href="#top">
-    <span class="sb-mark"><HexMark size={22} /></span>
-    <span class="sb-name">freeoxide<span class="tilde">:~/initiative</span></span>
-  </a>
-  <nav class="sb-nav">
-    <a href="#manifesto">manifesto</a>
-    <a href="#standards">standards</a>
-    <a href="#testing">testing</a>
-    <a href="#projects">projects</a>
-    <a href="#contribute">contribute</a>
-  </nav>
-  <div class="sb-right">
-    <span class="sb-status"><span class="dot"></span>v0.1.0 · building in public</span>
-    <a class="btn" href="#projects">browse projects</a>
-  </div>
+<header
+	class="sticky top-0 z-[8000] flex items-center gap-[18px] px-[var(--gutter)] py-2.5 border-b border-border"
+	style="background: color-mix(in srgb, var(--background) 86%, transparent); backdrop-filter: blur(8px);"
+>
+	<a href="#top" class="flex items-center gap-2.5 text-foreground no-underline">
+		<span class="w-[22px] h-[22px] text-primary block [&_svg]:w-full [&_svg]:h-full [&_svg]:block"><HexMark size={22} /></span>
+		<span class="font-bold tracking-[0.02em] whitespace-nowrap">freeoxide<span class="text-muted-foreground font-normal">:~/initiative</span></span>
+	</a>
+	<nav class="flex gap-1 ml-2">
+		{#each [
+			{ href: '#manifesto', label: 'manifesto' },
+			{ href: '#standards', label: 'standards' },
+			{ href: '#testing', label: 'testing' },
+			{ href: '#projects', label: 'projects' },
+			{ href: '#contribute', label: 'contribute' },
+		] as link}
+			<a
+				href={link.href}
+				class="text-muted-foreground px-2.5 py-1 rounded text-[13px] no-underline hover:text-primary hover:bg-card"
+			>{link.label}</a>
+		{/each}
+	</nav>
+	<div class="ml-auto flex items-center gap-4">
+		<span class="text-muted-foreground text-[12.5px] flex items-center gap-[7px]">
+			<StatusDot />
+			v0.1.0 · building in public
+		</span>
+		<Button variant="default" size="sm" href="#projects">browse projects</Button>
+	</div>
 </header>
