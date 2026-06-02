@@ -1,0 +1,475 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   GLOBAL UTILITIES
+   ============================================================ */
+:root {
+	--radius: 0.625rem;
+	--mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+	--maxw: 1080px;
+	--gutter: clamp(20px, 5vw, 64px);
+}
+
+/* ============================================================
+   THEME: OXIDE (default — charcoal + rust orange)
+   ============================================================ */
+[data-theme="oxide"] {
+	--background: #15100c;
+	--foreground: #ece2d6;
+	--card: #1d1610;
+	--card-foreground: #ece2d6;
+	--muted: #241b13;
+	--muted-foreground: #9a8c7b;
+	--primary: #f26419;
+	--primary-foreground: #15100c;
+	--secondary: #ffa05c;
+	--secondary-foreground: #15100c;
+	--accent: #1d1610;
+	--accent-foreground: #ece2d6;
+	--popover: #1d1610;
+	--popover-foreground: #ece2d6;
+	--destructive: #e5564b;
+	--border: #322a20;
+	--input: #4a3d2d;
+	--ring: #f26419;
+	--crt-faint: #867a6e;
+	--crt-ok: #79c356;
+	--crt-warn: #e9b949;
+	--crt-link: #ffa05c;
+	--crt-sel-bg: #f2641933;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 18px #f2641933;
+	--crt-scan-opacity: 0.05;
+	--crt-vig-edge: rgba(0,0,0,0.45);
+}
+
+/* ============================================================
+   THEME: PHOSPHOR (green CRT)
+   ============================================================ */
+[data-theme="phosphor"] {
+	--background: #020a05;
+	--foreground: #46f07a;
+	--card: #03130a;
+	--card-foreground: #46f07a;
+	--muted: #051a0d;
+	--muted-foreground: #28a04f;
+	--primary: #adffc7;
+	--primary-foreground: #020a05;
+	--secondary: #7bffa6;
+	--secondary-foreground: #020a05;
+	--accent: #03130a;
+	--accent-foreground: #46f07a;
+	--popover: #03130a;
+	--popover-foreground: #46f07a;
+	--destructive: #ff7a6b;
+	--border: #0d3d1f;
+	--input: #145c2e;
+	--ring: #adffc7;
+	--crt-faint: #248b46;
+	--crt-ok: #6dff97;
+	--crt-warn: #d8ff6b;
+	--crt-link: #adffc7;
+	--crt-sel-bg: #46f07a33;
+	--crt-glow: 0 0 6px #46f07a55;
+	--crt-glow-strong: 0 0 14px #46f07a88;
+	--crt-scan-opacity: 0.13;
+	--crt-vig-edge: rgba(0,0,0,0.45);
+}
+
+/* ============================================================
+   THEME: AMBER (retro monochrome)
+   ============================================================ */
+[data-theme="amber"] {
+	--background: #160d00;
+	--foreground: #ffb000;
+	--card: #1f1300;
+	--card-foreground: #ffb000;
+	--muted: #271800;
+	--muted-foreground: #b67900;
+	--primary: #ffd470;
+	--primary-foreground: #160d00;
+	--secondary: #ffc24d;
+	--secondary-foreground: #160d00;
+	--accent: #1f1300;
+	--accent-foreground: #ffb000;
+	--popover: #1f1300;
+	--popover-foreground: #ffb000;
+	--destructive: #ff7a4d;
+	--border: #4a2f00;
+	--input: #6b4500;
+	--ring: #ffd470;
+	--crt-faint: #a57000;
+	--crt-ok: #ffd470;
+	--crt-warn: #fff0a0;
+	--crt-link: #ffd470;
+	--crt-sel-bg: #ffb00033;
+	--crt-glow: 0 0 6px #ffb00055;
+	--crt-glow-strong: 0 0 14px #ffb00088;
+	--crt-scan-opacity: 0.13;
+	--crt-vig-edge: rgba(0,0,0,0.45);
+}
+
+/* ============================================================
+   THEME: MIDNIGHT (modern muted TUI)
+   ============================================================ */
+[data-theme="midnight"] {
+	--background: #15161e;
+	--foreground: #c4cbf0;
+	--card: #1a1b26;
+	--card-foreground: #c4cbf0;
+	--muted: #20212e;
+	--muted-foreground: #878fb1;
+	--primary: #7aa2f7;
+	--primary-foreground: #15161e;
+	--secondary: #ff9e64;
+	--secondary-foreground: #15161e;
+	--accent: #1a1b26;
+	--accent-foreground: #c4cbf0;
+	--popover: #1a1b26;
+	--popover-foreground: #c4cbf0;
+	--destructive: #f7768e;
+	--border: #292c3e;
+	--input: #3a3f57;
+	--ring: #7aa2f7;
+	--crt-faint: #787ea2;
+	--crt-ok: #9ece6a;
+	--crt-warn: #e0af68;
+	--crt-link: #7dcfff;
+	--crt-sel-bg: #7aa2f733;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 16px #7aa2f733;
+	--crt-scan-opacity: 0.035;
+	--crt-vig-edge: rgba(0,0,0,0.45);
+}
+
+/* ============================================================
+   THEME: DARK (dedicated mono — black & white)
+   ============================================================ */
+[data-theme="dark"] {
+	--background: #0a0a0b;
+	--foreground: #f3f3f4;
+	--card: #121214;
+	--card-foreground: #f3f3f4;
+	--muted: #1a1a1d;
+	--muted-foreground: #9b9ba2;
+	--primary: #c9cdd4;
+	--primary-foreground: #0a0a0b;
+	--secondary: #9aa0a8;
+	--secondary-foreground: #0a0a0b;
+	--accent: #121214;
+	--accent-foreground: #f3f3f4;
+	--popover: #121214;
+	--popover-foreground: #f3f3f4;
+	--destructive: #cfcfd4;
+	--border: #242428;
+	--input: #383840;
+	--ring: #c9cdd4;
+	--crt-faint: #79797e;
+	--crt-ok: #dadde2;
+	--crt-warn: #b9bcc2;
+	--crt-link: #e8e9ec;
+	--crt-sel-bg: #ffffff22;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 16px #ffffff14;
+	--crt-scan-opacity: 0.04;
+	--crt-vig-edge: rgba(0,0,0,0.55);
+}
+
+/* ============================================================
+   THEME: LIGHT (dedicated mono — ink on paper)
+   ============================================================ */
+[data-theme="light"] {
+	--background: #f4f1ea;
+	--foreground: #1b1a18;
+	--card: #fbf9f4;
+	--card-foreground: #1b1a18;
+	--muted: #ece8df;
+	--muted-foreground: #5d574e;
+	--primary: #121110;
+	--primary-foreground: #f7f4ee;
+	--secondary: #4a443c;
+	--secondary-foreground: #f7f4ee;
+	--accent: #ece8df;
+	--accent-foreground: #1b1a18;
+	--popover: #fbf9f4;
+	--popover-foreground: #1b1a18;
+	--destructive: #8a1d12;
+	--border: #ddd7cb;
+	--input: #c6bfb1;
+	--ring: #121110;
+	--crt-faint: #736d64;
+	--crt-ok: #2f2c27;
+	--crt-warn: #5d574e;
+	--crt-link: #121110;
+	--crt-sel-bg: #1b1a1822;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 0 transparent;
+	--crt-scan-opacity: 0.028;
+	--crt-vig-edge: rgba(80,70,55,0.07);
+}
+
+/* ============================================================
+   THEME: SOLARIZED (solarized dark)
+   ============================================================ */
+[data-theme="solarized"] {
+	--background: #002b36;
+	--foreground: #93a1a1;
+	--card: #073642;
+	--card-foreground: #93a1a1;
+	--muted: #0a4451;
+	--muted-foreground: #909f9f;
+	--primary: #cb4b16;
+	--primary-foreground: #002b36;
+	--secondary: #b58900;
+	--secondary-foreground: #002b36;
+	--accent: #073642;
+	--accent-foreground: #93a1a1;
+	--popover: #073642;
+	--popover-foreground: #93a1a1;
+	--destructive: #dc322f;
+	--border: #0c4150;
+	--input: #14576a;
+	--ring: #cb4b16;
+	--crt-faint: #819092;
+	--crt-ok: #859900;
+	--crt-warn: #b58900;
+	--crt-link: #268bd2;
+	--crt-sel-bg: #cb4b1633;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 16px #cb4b1626;
+	--crt-scan-opacity: 0.045;
+	--crt-vig-edge: rgba(0,0,0,0.38);
+}
+
+/* ============================================================
+   THEME: CHARM (charm.sh — neon pink + purple)
+   ============================================================ */
+[data-theme="charm"] {
+	--background: #16131f;
+	--foreground: #f6f1fb;
+	--card: #1e1a2b;
+	--card-foreground: #f6f1fb;
+	--muted: #261f36;
+	--muted-foreground: #9a8fb5;
+	--primary: #ff62b0;
+	--primary-foreground: #16131f;
+	--secondary: #c4a8ff;
+	--secondary-foreground: #16131f;
+	--accent: #1e1a2b;
+	--accent-foreground: #f6f1fb;
+	--popover: #1e1a2b;
+	--popover-foreground: #f6f1fb;
+	--destructive: #ff6188;
+	--border: #2c2540;
+	--input: #463a63;
+	--ring: #ff62b0;
+	--crt-faint: #847b9d;
+	--crt-ok: #5fe0a0;
+	--crt-warn: #f6d35a;
+	--crt-link: #c4a8ff;
+	--crt-sel-bg: #ff62b033;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 18px #ff62b033;
+	--crt-scan-opacity: 0.045;
+	--crt-vig-edge: rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   THEME: CHARM LIGHT (charm.sh — magenta ink on lavender paper)
+   ============================================================ */
+[data-theme="charm-light"] {
+	--background: #faf6ff;
+	--foreground: #241b33;
+	--card: #ffffff;
+	--card-foreground: #241b33;
+	--muted: #f1eafe;
+	--muted-foreground: #6f6580;
+	--primary: #c4197f;
+	--primary-foreground: #ffffff;
+	--secondary: #6b3fe0;
+	--secondary-foreground: #ffffff;
+	--accent: #f1eafe;
+	--accent-foreground: #241b33;
+	--popover: #ffffff;
+	--popover-foreground: #241b33;
+	--destructive: #c81e4e;
+	--border: #e7ddf6;
+	--input: #d2c2ee;
+	--ring: #c4197f;
+	--crt-faint: #776d88;
+	--crt-ok: #15833f;
+	--crt-warn: #8a6000;
+	--crt-link: #6b3fe0;
+	--crt-sel-bg: #c4197f1f;
+	--crt-glow: 0 0 0 transparent;
+	--crt-glow-strong: 0 0 0 transparent;
+	--crt-scan-opacity: 0.028;
+	--crt-vig-edge: rgba(80,60,110,0.06);
+}
+
+/* ============================================================
+   TAILWIND THEME — map CSS variables to Tailwind tokens
+   ============================================================ */
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-crt-faint: var(--crt-faint);
+	--color-crt-ok: var(--crt-ok);
+	--color-crt-warn: var(--crt-warn);
+	--color-crt-link: var(--crt-link);
+	--font-mono: var(--mono);
+}
+
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--mono);
+		font-size: 15px;
+		line-height: 1.65;
+		-webkit-font-smoothing: antialiased;
+		font-feature-settings: "calt" 1, "liga" 1;
+		letter-spacing: 0.01em;
+	}
+
+	::selection { background: var(--crt-sel-bg); }
+
+	a { color: var(--crt-link); text-decoration: none; }
+	a:hover { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+/* ============================================================
+   CRT GLOW — phosphor/amber text-shadow
+   ============================================================ */
+[data-theme="phosphor"] .glowable,
+[data-theme="amber"] .glowable { text-shadow: var(--crt-glow); }
+
+/* ============================================================
+   CRT EFFECTS — Scanlines + Vignette + Flicker
+   These use pseudo-elements and keyframes — no Tailwind equivalent.
+   ============================================================ */
+.fx {
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 9000;
+}
+.fx::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(0,0,0,0) 0px,
+		rgba(0,0,0,0) 2px,
+		rgba(0,0,0,var(--crt-scan-opacity)) 3px,
+		rgba(0,0,0,var(--crt-scan-opacity)) 4px
+	);
+	background-size: 100% 4px;
+}
+.fx::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(120% 120% at 50% 50%, transparent 55%, var(--crt-vig-edge) 100%);
+}
+.no-scanlines .fx::before { display: none; }
+
+@keyframes crtflicker {
+	0%, 96%, 100% { opacity: 0; }
+	97% { opacity: 0.18; }
+	98% { opacity: 0.04; }
+	99% { opacity: 0.12; }
+}
+.fx-flicker {
+	pointer-events: none;
+	position: fixed; inset: 0; z-index: 9001;
+	background: var(--foreground);
+	mix-blend-mode: overlay;
+	opacity: 0;
+}
+.flicker .fx-flicker { animation: crtflicker 7s linear infinite; }
+
+/* ============================================================
+   CURSOR BLINK — used by Footer
+   ============================================================ */
+.cursor {
+	display: inline-block;
+	width: 0.6em; height: 1.05em;
+	background: var(--primary);
+	margin-left: 2px;
+	vertical-align: text-bottom;
+	animation: blink 1.05s steps(1) infinite;
+	box-shadow: var(--crt-glow);
+}
+
+/* ============================================================
+   KEYFRAMES — shared by multiple components
+   ============================================================ */
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse { 50% { opacity: 0.35; } }
+@keyframes bootln { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+.bootln { animation: bootln .22s ease both; }
+
+/* ============================================================
+   REVEAL ANIMATION — driven by IntersectionObserver in +page.svelte
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   3D LATTICE — structural positioning for OxideLattice
+   Uses mask-image which has no Tailwind equivalent.
+   ============================================================ */
+.hero-3d {
+	position: absolute; top: -28px; bottom: -8px;
+	left: 50%; transform: translateX(-50%);
+	width: 100vw; max-width: 1500px; z-index: 0; pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-3d canvas {
+	display: block; width: 100%; height: 100%;
+	-webkit-mask-image: radial-gradient(115% 100% at 72% 40%, #000 32%, transparent 80%);
+	        mask-image: radial-gradient(115% 100% at 72% 40%, #000 32%, transparent 80%);
+}
+.hero-3d.grabbing { cursor: grabbing; }
+
+/* ============================================================
+   REDUCED MOTION — accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+	.reveal { opacity: 1; transform: none; transition: none; }
+	.cursor { animation: none; }
+	.hero-3d { opacity: 0.85; }
+}

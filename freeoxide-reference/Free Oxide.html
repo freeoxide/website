@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>freeoxide — open-source Rust, built to a standard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="crt glowable" id="crt" data-theme="oxide">
+
+  <!-- status bar -->
+  <header class="statusbar">
+    <a class="sb-brand" href="#top">
+      <span class="sb-mark" data-hex></span>
+      <span class="sb-name">freeoxide<span class="tilde">:~/initiative</span></span>
+    </a>
+    <nav class="sb-nav">
+      <a href="#manifesto">manifesto</a>
+      <a href="#standards">standards</a>
+      <a href="#testing">testing</a>
+      <a href="#projects">projects</a>
+      <a href="#contribute">contribute</a>
+    </nav>
+    <div class="sb-right">
+      <span class="sb-status"><span class="dot"></span>v0.1.0 · building in public</span>
+      <a class="btn" href="#projects">browse projects</a>
+    </div>
+  </header>
+
+  <main class="session" id="top">
+
+    <!-- HERO -->
+    <section class="hero" data-screen-label="hero">
+      <div class="boot" id="boot" aria-label="boot sequence"></div>
+
+      <div class="wordmark reveal">
+        <span class="hex" data-hex></span>
+        <h1><span class="free">free</span><span class="oxide">oxide</span></h1>
+      </div>
+
+      <p class="tagline reveal" id="tagline"></p>
+
+      <p class="lede reveal">
+        <span class="hi">A one-person initiative for open-source Rust.</span>
+        I build the tools I wish existed — then open them, and hold each one to the
+        same bar: tested until it's boring, audited until there's nothing left to find.
+      </p>
+
+      <div class="cta-row reveal">
+        <a class="btn lg" href="#projects">browse the projects →</a>
+        <a class="btn lg ghost" href="#manifesto">./manifesto.md</a>
+        <a class="btn lg ghost" href="https://github.com" target="_blank" rel="noopener">github ↗</a>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><div class="v">4–5×</div><div class="k">audit passes / project</div></div>
+        <div class="stat"><div class="v">5–8</div><div class="k">AI edge-case rounds</div></div>
+        <div class="stat"><div class="v">&gt;90%</div><div class="k">coverage floor</div></div>
+        <div class="stat"><div class="v">100%</div><div class="k">open · MIT / Apache-2.0</div></div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section id="manifesto" data-screen-label="manifesto">
+      <div class="sec-cmd"><span class="prompt"></span><span class="cmdline">cat <span class="arg">MANIFESTO.md</span></span><span class="out">~/initiative</span></div>
+      <div class="ascii-rule reveal">┌─────────────────────────────────────────────────────────────────────────┐</div>
+      <div class="manifesto-body reveal">
+        <p>freeoxide is a one-person initiative with a simple bias: <span class="dim">software I depend on should be open — and open software should be built like it's load-bearing.</span></p>
+        <p>I build these projects for myself first. The boilerplate I wanted on day one, the CLI I actually needed, the tools I couldn't find. Then I open them, because someone else probably needed them too.</p>
+        <p>Rust is the floor, not the headline. The point isn't the language — it's the discipline. Code that's tested until it's boring, structured so the next person can read it, and audited pass after pass until there's nothing left to surprise you.</p>
+        <p class="sig">— <span class="accent">maintainer</span>, freeoxide</p>
+      </div>
+    </section>
+
+    <!-- STANDARDS -->
+    <section id="standards" data-screen-label="standards">
+      <div class="sec-cmd"><span class="prompt"></span><span class="cmdline">freeoxide standards <span class="flag">--list</span></span><span class="out">6 checks</span></div>
+      <h2 class="h2 reveal">What makes a project qualify</h2>
+      <p class="sub reveal">A project doesn't carry the freeoxide name until every box below is true. No exceptions, no "we'll fix it later."</p>
+      <div class="checklist">
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Real test coverage.</b> Not a number to game — paths exercised, edge cases pinned. <span class="cd">&gt;90% is the floor, not the goal.</span></span></div>
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Multi-pass AI audits.</b> Every project gets 4–5 independent audit passes. <span class="cd">Each pass is told to find something the last one missed — and usually does.</span></span></div>
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Architecture review.</b> Module boundaries and structure reviewed the same way. <span class="cd">Pass after pass, until the shape stops changing.</span></span></div>
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Performance passes.</b> Dedicated runs to find hot paths and allocations worth removing. <span class="cd">Measured, not guessed.</span></span></div>
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Idiomatic & documented.</b> Clippy-clean, sensible defaults, a public API you can read. <span class="cd">If it needs a comment to be safe, it gets one.</span></span></div>
+        <div class="check reveal"><span class="box">[x]</span><span class="ct"><b>Open by default.</b> MIT / Apache-2.0, readable git history, no surprise dependencies. <span class="cd">Auditable all the way down.</span></span></div>
+      </div>
+    </section>
+
+    <!-- TESTING -->
+    <section id="testing" data-screen-label="testing">
+      <div class="sec-cmd"><span class="prompt"></span><span class="cmdline">freeoxide test <span class="flag">--explain</span></span><span class="out">manual + ai</span></div>
+      <h2 class="h2 reveal">How the testing actually works</h2>
+      <p class="sub reveal">Two loops running against each other: a human looking for the obvious failures, and AI grinding for the ones a human would never think to write.</p>
+
+      <div class="cols2">
+        <div class="panel reveal">
+          <div class="panel-hd"><span class="tl"><i class="r"></i><i class="y"></i><i class="g"></i></span><span class="ttl">manual review</span></div>
+          <div class="panel-bd">
+            <p><span class="hi">Read every line.</span> Then run it like a user would — and again like an attacker would.</p>
+            <p>The boring failures get found by hand: bad input, empty state, the unhappy path, the thing that only breaks the third time.</p>
+          </div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-hd"><span class="tl"><i class="r"></i><i class="y"></i><i class="g"></i></span><span class="ttl">ai-assisted</span></div>
+          <div class="panel-bd">
+            <p><span class="hi">AI writes tests in rounds — 5 to 8 of them.</span> Each round is asked for the cases the last one missed.</p>
+            <p>New edge cases, new inputs, new ways to break it. It's slower on purpose. That's the point.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ladder reveal" aria-label="a typical edge-case run">
+        <div class="rung"><span class="n">01</span><span class="lbl">baseline suite</span><span class="find">happy paths + the obvious errors</span></div>
+        <div class="rung"><span class="n">02</span><span class="lbl">round two</span><span class="find"><b>+</b> boundary values, empty &amp; max inputs</span></div>
+        <div class="rung"><span class="n">03</span><span class="lbl">round three</span><span class="find"><b>+</b> unicode, encoding, locale edge cases</span></div>
+        <div class="rung"><span class="n">04</span><span class="lbl">round four</span><span class="find"><b>+</b> concurrency, ordering &amp; race conditions</span></div>
+        <div class="rung"><span class="n">05</span><span class="lbl">rounds five–eight</span><span class="find"><b>+</b> the weird ones you'd never write by hand</span></div>
+      </div>
+      <p class="comment reveal" style="margin-top:16px;">slower on purpose. no stone left unturned.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" data-screen-label="projects">
+      <div class="sec-cmd"><span class="prompt"></span><span class="cmdline">freeoxide projects</span><span class="out">1 shipped · 2 in progress</span></div>
+      <h2 class="h2 reveal">The projects</h2>
+      <p class="sub reveal">Small in number, deliberately. Each one ships only once it clears every standard above.</p>
+      <div class="proj-list">
+
+        <a class="proj reveal" href="https://github.com" target="_blank" rel="noopener">
+          <div class="pname">gpui-starter <span class="star">↗</span></div>
+          <span class="badge shipped">shipped</span>
+          <div class="pdesc">A batteries-included starting point for native GPUI apps — the scaffold I wanted on day one.</div>
+          <div class="pmeta"><span><b>lang</b> Rust</span><span><b>stack</b> GPUI</span><span><b>license</b> MIT / Apache-2.0</span></div>
+        </a>
+
+        <a class="proj reveal" href="#contribute">
+          <div class="pname">vps-harden <span class="star">↗</span></div>
+          <span class="badge wip">in&nbsp;progress</span>
+          <div class="pdesc">Harden a fresh VPS with one auditable command. Sensible, reversible, opinionated defaults.</div>
+          <div class="pmeta"><span><b>lang</b> Rust</span><span><b>type</b> CLI</span><span><b>status</b> hardening &amp; testing</span></div>
+        </a>
+
+        <a class="proj reveal" href="#contribute">
+          <div class="pname">agent-config <span class="star">↗</span></div>
+          <span class="badge planned">planned</span>
+          <div class="pdesc">A native desktop app to see and manage your AI agents' configuration and usage — built on gpui-starter.</div>
+          <div class="pmeta"><span><b>lang</b> Rust</span><span><b>stack</b> GPUI · desktop</span><span><b>status</b> designing</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- CONTRIBUTE -->
+    <section id="contribute" data-screen-label="contribute">
+      <div class="sec-cmd"><span class="prompt"></span><span class="cmdline">freeoxide contribute</span><span class="out">prs welcome</span></div>
+      <h2 class="h2 reveal">Get involved</h2>
+      <p class="sub reveal">It's one person right now — which means a single good PR genuinely moves things. Here's where to start.</p>
+      <div class="steps">
+        <div class="step reveal"><span class="sn">01</span><span class="st">Browse what exists.<span class="sd">Start in the project list. Read the code, the tests, the audit notes. Open an issue the moment something smells off.</span></span></div>
+        <div class="step reveal"><span class="sn">02</span><span class="st">Raise the bar, don't just add to it.<span class="sd">The most welcome PRs add a test, kill an edge case, or make the structure simpler — not just bigger.</span></span></div>
+        <div class="step reveal"><span class="sn">03</span><span class="st">Submit a project.<span class="sd">Built something to this standard? Propose it. It runs through the same audit passes before it carries the freeoxide name.</span></span></div>
+        <div class="step reveal"><span class="sn">04</span><span class="st">Build in public with me.<span class="sd">Most of this happens in the open. Follow along, argue with the decisions, suggest the next tool worth building.</span></span></div>
+      </div>
+      <div class="contribute-cta reveal">
+        <a class="btn lg" href="#projects">browse the projects →</a>
+        <a class="btn lg ghost" href="https://github.com" target="_blank" rel="noopener">github ↗</a>
+        <span class="comment" style="margin:0;">good first issues are tagged.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="fcol">
+      <div class="fhd">initiative</div>
+      <a href="#manifesto">manifesto</a>
+      <a href="#standards">standards</a>
+      <a href="#testing">how testing works</a>
+    </div>
+    <div class="fcol">
+      <div class="fhd">code</div>
+      <a href="https://github.com" target="_blank" rel="noopener">github ↗</a>
+      <a href="#projects">gpui-starter</a>
+      <a href="#projects">all projects</a>
+    </div>
+    <div class="fcol">
+      <div class="fhd">license</div>
+      <a href="https://opensource.org/license/mit" target="_blank" rel="noopener">MIT</a>
+      <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache-2.0</a>
+    </div>
+    <div class="fend">
+      <span class="lic">freeoxide · built in public · dual-licensed MIT / Apache-2.0</span><br />
+      © 2026 — no warranty, lots of tests.<span class="cursor" style="height:0.9em;"></span>
+    </div>
+  </footer>
+
+  <!-- CRT overlays -->
+  <div class="fx" aria-hidden="true"></div>
+  <div class="fx-flicker" aria-hidden="true"></div>
+</div>
+
+<!-- mount point for the Tweaks panel (React) -->
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="boot.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+<!-- direct-edit style overrides live here -->
+<style id="__om-edit-overrides"></style>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+	"name": "FreeOxide",
+	"short_name": "FreeOxide",
+	"description": "Open-source Rust, held to the metal.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#15100c",
+	"theme_color": "#f26419",
+	"icons": [
+		{
+			"src": "/favicon.svg",
+			"sizes": "any",
+			"type": "image/svg+xml"
+		},
+		{
+			"src": "/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		}
+	]
+}
