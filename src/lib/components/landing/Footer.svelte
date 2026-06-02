@@ -4,7 +4,6 @@
 	<div class="grid gap-1.5">
 		<div class="text-crt-faint text-xs uppercase tracking-[0.08em] mb-1">initiative</div>
 		<a href="#standards" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">standards</a>
-		<a href="#testing" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">how testing works</a>
 	</div>
 	<div class="grid gap-1.5">
 		<div class="text-crt-faint text-xs uppercase tracking-[0.08em] mb-1">code</div>

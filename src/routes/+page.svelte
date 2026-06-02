@@ -6,7 +6,6 @@
 	import Wordmark from '$lib/components/landing/Wordmark.svelte';
 	import OxideLattice from '$lib/components/three/OxideLattice.svelte';
 	import Standards from '$lib/components/landing/Standards.svelte';
-	import Testing from '$lib/components/landing/Testing.svelte';
 	import Projects from '$lib/components/landing/Projects.svelte';
 	import Contribute from '$lib/components/landing/Contribute.svelte';
 	import Footer from '$lib/components/landing/Footer.svelte';
@@ -121,7 +120,7 @@
 				<div class="reveal">
 					<StatsStrip stats={[
 						{ value: '4-5×', label: 'audit passes / project' },
-						{ value: '5-8', label: 'AI edge-case rounds' },
+						{ value: '5', label: 'AI edge-case rounds' },
 						{ value: '>90%', label: 'coverage floor' },
 						{ value: '100%', label: 'open · MIT / Apache-2.0' },
 					]} />
@@ -130,7 +129,6 @@
 		</section>
 
 		<Standards />
-		<Testing />
 		<Projects />
 		<Contribute />
 	</main>
