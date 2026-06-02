@@ -5,7 +5,6 @@
 	import Typewriter from '$lib/components/landing/Typewriter.svelte';
 	import Wordmark from '$lib/components/landing/Wordmark.svelte';
 	import OxideLattice from '$lib/components/three/OxideLattice.svelte';
-	import Manifesto from '$lib/components/landing/Manifesto.svelte';
 	import Standards from '$lib/components/landing/Standards.svelte';
 	import Testing from '$lib/components/landing/Testing.svelte';
 	import Projects from '$lib/components/landing/Projects.svelte';
@@ -69,7 +68,7 @@
 </script>
 
 <svelte:head>
-	<title>FreeOxide — Open-Source Rust, Held to the Metal</title>
+	<title>FreeOxide | Open-Source Rust, Held to the Metal</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
@@ -95,7 +94,7 @@
 				<div class="absolute top-1 right-0 text-right pointer-events-none select-none text-[11.5px] leading-[1.7] tracking-[0.02em] text-crt-faint flex flex-col max-[820px]:hidden" aria-hidden="true">
 					<div><span class="text-muted-foreground after:content-['_›'] after:text-primary after:mx-px">lattice</span> α‑Fe₂O₃ · hematite</div>
 					<div><span class="text-muted-foreground after:content-['_›'] after:text-primary after:mx-px">cell</span><span id="lh-counts">…</span></div>
-					<div><span class="text-muted-foreground after:content-['_›'] after:text-primary after:mx-px">probe</span><span id="lh-probe">idle — drag to rotate</span></div>
+					<div><span class="text-muted-foreground after:content-['_›'] after:text-primary after:mx-px">probe</span><span id="lh-probe">idle: drag to rotate</span></div>
 				</div>
 
 				<BootSequence onComplete={() => (bootComplete = true)} />
@@ -109,21 +108,20 @@
 				</p>
 
 				<p class="max-w-[60ch] text-muted-foreground text-[clamp(14px,1.7vw,16px)] m-0 mb-[30px] text-pretty reveal">
-					<span class="text-foreground">A one-person initiative for open-source Rust.</span>
-					I build the tools I wish existed — then open them, and hold each one to the
-					same bar: tested until it's boring, audited until there's nothing left to find.
+					<span class="text-foreground">Open-source Rust, one person at the keyboard.</span>
+					I build the tools I wish existed and release them. Every project gets real tests, real audits. What ships is finished.
 				</p>
 
 				<div class="flex flex-wrap gap-3 reveal">
 					<Button variant="default" size="lg" href="#projects">browse the projects →</Button>
-					<Button variant="outline" size="lg" href="#manifesto">./manifesto.md</Button>
+					<Button variant="outline" size="lg" href="#standards">./about.md</Button>
 					<Button variant="outline" size="lg" href="https://github.com" target="_blank" rel="noopener">github ↗</Button>
 				</div>
 
 				<div class="reveal">
 					<StatsStrip stats={[
-						{ value: '4–5×', label: 'audit passes / project' },
-						{ value: '5–8', label: 'AI edge-case rounds' },
+						{ value: '4-5×', label: 'audit passes / project' },
+						{ value: '5-8', label: 'AI edge-case rounds' },
 						{ value: '>90%', label: 'coverage floor' },
 						{ value: '100%', label: 'open · MIT / Apache-2.0' },
 					]} />
@@ -131,7 +129,6 @@
 			</div>
 		</section>
 
-		<Manifesto />
 		<Standards />
 		<Testing />
 		<Projects />

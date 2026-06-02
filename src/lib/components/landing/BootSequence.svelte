@@ -26,7 +26,7 @@
 			delay: 240
 		},
 		{
-			html: '<span class="text-crt-ok">[  ok  ]</span> <span class="text-muted-foreground">loading manifesto</span>',
+			html: '<span class="text-crt-ok">[  ok  ]</span> <span class="text-muted-foreground">loading config</span>',
 			delay: 240
 		},
 		{
@@ -34,7 +34,7 @@
 			delay: 240
 		},
 		{
-			html: '<span class="text-crt-ok">[  ok  ]</span> <span class="text-muted-foreground">all checks green — ready.</span>',
+			html: '<span class="text-crt-ok">[  ok  ]</span> <span class="text-muted-foreground">all checks green: ready.</span>',
 			delay: 240
 		}
 	];

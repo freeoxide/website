@@ -19,7 +19,7 @@
 				rel="noopener"
 				status="shipped"
 				statusLabel="shipped"
-				description="A batteries-included starting point for native GPUI apps — the scaffold I wanted on day one."
+				description="A batteries-included starting point for native GPUI apps. The scaffold I wanted on day one."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
 					{ label: 'stack', value: 'GPUI' },
@@ -47,7 +47,7 @@
 				href="#contribute"
 				status="planned"
 				statusLabel="planned"
-				description="A native desktop app to see and manage your AI agents' configuration and usage — built on gpui-boilerplate."
+				description="A native desktop app to see and manage your AI agents' configuration and usage. Built on gpui-boilerplate."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
 					{ label: 'stack', value: 'GPUI · desktop' },

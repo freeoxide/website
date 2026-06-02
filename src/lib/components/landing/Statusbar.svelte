@@ -14,7 +14,6 @@
 	</a>
 	<nav class="flex gap-1 ml-2">
 		{#each [
-			{ href: '#manifesto', label: 'manifesto' },
 			{ href: '#standards', label: 'standards' },
 			{ href: '#testing', label: 'testing' },
 			{ href: '#projects', label: 'projects' },

@@ -1,9 +1,9 @@
 export const TAGLINES: Record<string, string> = {
   standard: "Open-source Rust, built to a standard.",
-  boring: "Audited until it's boring.",
-  stone: "No stone left unturned.",
-  trust: "Rust you can read, trust, and ship.",
-  deserves: "Software that deserves to be free.",
+  boring: "Every release earns it.",
+  stone: "The edge cases don't slip through.",
+  trust: "Rust you'd be comfortable debugging at 2am.",
+  deserves: "Open tools, closed bugs.",
 };
 
 export const FONTS: Record<string, string> = {

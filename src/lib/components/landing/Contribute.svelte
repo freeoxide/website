@@ -9,13 +9,13 @@
 	<SectionCmd command="freeoxide contribute" output="prs welcome" />
 	<SectionHeading
 		text="Get involved"
-		sub="It's one person right now — which means a single good PR genuinely moves things. Here's where to start."
+		sub="It's one person right now, which means a single good PR genuinely moves things. Here's where to start."
 	/>
 	<div class="grid gap-2.5 max-w-[72ch]">
-		<div class="reveal"><StepItem number="01" title="Browse what exists." description="Start in the project list. Read the code, the tests, the audit notes. Open an issue the moment something smells off." /></div>
-		<div class="reveal"><StepItem number="02" title="Raise the bar, don't just add to it." description="The most welcome PRs add a test, kill an edge case, or make the structure simpler — not just bigger." /></div>
+		<div class="reveal"><StepItem number="01" title="Browse what exists." description="Start in the project list. Read the code and the tests. Open an issue the moment something smells off." /></div>
+		<div class="reveal"><StepItem number="02" title="Raise the bar." description="The best PRs fix a bug, add a missing test, or simplify something. More code isn't the goal." /></div>
 		<div class="reveal"><StepItem number="03" title="Submit a project." description="Built something to this standard? Propose it. It runs through the same audit passes before it carries the freeoxide name." /></div>
-		<div class="reveal"><StepItem number="04" title="Build in public with me." description="Most of this happens in the open. Follow along, argue with the decisions, suggest the next tool worth building." /></div>
+		<div class="reveal"><StepItem number="04" title="Build in public with me." description="Most of this happens in the open. Follow along and push back on decisions. Or suggest the next tool worth building." /></div>
 	</div>
 	<div class="mt-6 flex gap-3 flex-wrap items-center reveal">
 		<Button variant="default" size="lg" href="#projects">browse the projects →</Button>
