@@ -15,7 +15,6 @@
 	<nav class="flex gap-1 ml-2">
 		{#each [
 			{ href: '#standards', label: 'standards' },
-			{ href: '#projects', label: 'projects' },
 		] as link}
 			<a
 				href={link.href}
@@ -26,7 +25,6 @@
 	<div class="ml-auto flex items-center gap-4">
 		<span class="text-muted-foreground text-[12.5px] flex items-center gap-[7px]">
 			<StatusDot />
-			v0.1.0 · building in public
 		</span>
 		<Button variant="default" size="sm" href="#projects">browse projects</Button>
 	</div>
