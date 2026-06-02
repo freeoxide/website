@@ -66,24 +66,32 @@
 </script>
 
 <svelte:head>
-	<title>FreeOxide | Open-Source Rust, Held to the Metal</title>
-	<meta name="description" content="Open-source Rust, held to the metal. Tools built with real tests, real audits. Every project gets finished quality." />
+	<title>FreeOxide — Open-Source Rust Projects, Held to the Metal</title>
+	<meta name="description" content="Open-source Rust, held to the metal. Every FreeOxide project ships with real tests, real audits, and finished quality. Browse gpui-starter and more." />
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="FreeOxide | Open-Source Rust, Held to the Metal" />
-	<meta property="og:description" content="Open-source Rust, held to the metal. Tools built with real tests, real audits." />
+	<meta property="og:title" content="FreeOxide — Open-Source Rust Projects, Held to the Metal" />
+	<meta property="og:description" content="Open-source Rust, held to the metal. Every project ships with real tests, real audits, and finished quality." />
 	<meta property="og:image" content="https://freeoxide.com/og-image.png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:site_name" content="FreeOxide" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:url" content="https://freeoxide.com/" />
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="FreeOxide | Open-Source Rust, Held to the Metal" />
-	<meta name="twitter:description" content="Open-source Rust, held to the metal." />
+	<meta name="twitter:site" content="@hmziqrs" />
+	<meta name="twitter:creator" content="@hmziqrs" />
+	<meta name="twitter:title" content="FreeOxide — Open-Source Rust Projects, Held to the Metal" />
+	<meta name="twitter:description" content="Open-source Rust, held to the metal. Every project ships with real tests, real audits, and finished quality." />
 	<meta name="twitter:image" content="https://freeoxide.com/og-image.png" />
 
+	<meta name="author" content="hmziq" />
+	<link rel="me" href="https://twitter.com/hmziqrs" />
+	<link rel="me" href="https://hmziq.rs" />
+	<link rel="me" href="https://hmziq.xyz" />
 	<link rel="canonical" href="https://freeoxide.com/" />
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
