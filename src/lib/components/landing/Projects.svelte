@@ -2,6 +2,7 @@
 	import { SectionCmd } from '$lib/components/ui/section-cmd';
 	import { SectionHeading } from '$lib/components/ui/section-heading';
 	import { ProjectCard } from '$lib/components/ui/project-card';
+	import { Button } from '$lib/components/ui/button';
 </script>
 
 <section id="projects" data-screen-label="projects" class="py-14 border-b border-dashed border-border last:border-b-0">
@@ -13,8 +14,8 @@
 	<div class="grid gap-3">
 		<div class="reveal">
 			<ProjectCard
-				name="gpui-boilerplate"
-				href="https://github.com"
+				name="gpui-starter"
+				href="https://github.com/hmziqrs/gpui-starter"
 				target="_blank"
 				rel="noopener"
 				status="shipped"
@@ -25,7 +26,16 @@
 					{ label: 'stack', value: 'GPUI' },
 					{ label: 'license', value: 'MIT / Apache-2.0' },
 				]}
-			/>
+			>
+				<Button
+					variant="ghost"
+					size="sm"
+					href="https://gpui-starter.hmziq.xyz"
+					target="_blank"
+					rel="noopener"
+					onclick={(e) => e.stopPropagation()}
+				>website</Button>
+			</ProjectCard>
 		</div>
 		<div class="reveal">
 			<ProjectCard
@@ -47,7 +57,7 @@
 				href="#contribute"
 				status="planned"
 				statusLabel="planned"
-				description="A native desktop app to see and manage your AI agents' configuration and usage. Built on gpui-boilerplate."
+				description="A native desktop app to see and manage your AI agents' configuration and usage. Built on gpui-starter."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
 					{ label: 'stack', value: 'GPUI · desktop' },

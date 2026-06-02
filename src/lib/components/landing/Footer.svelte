@@ -8,7 +8,7 @@
 	<div class="grid gap-1.5">
 		<div class="text-crt-faint text-xs uppercase tracking-[0.08em] mb-1">code</div>
 		<a href="https://github.com" target="_blank" rel="noopener" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">github ↗</a>
-		<a href="#projects" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">gpui-boilerplate</a>
+		<a href="https://gpui-starter.hmziq.xyz" target="_blank" rel="noopener" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">gpui-starter ↗</a>
 		<a href="#projects" class="text-muted-foreground text-[13.5px] no-underline hover:text-primary">all projects</a>
 	</div>
 	<div class="grid gap-1.5">

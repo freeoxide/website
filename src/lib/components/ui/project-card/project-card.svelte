@@ -54,6 +54,7 @@
 	<div class="text-[17px] font-bold text-foreground flex items-center gap-2.5">
 		{name}
 		<span class="text-muted-foreground font-normal text-[13px]">↗</span>
+		{@render children?.()}
 	</div>
 	<Badge variant={status} class="row-start-1 col-start-2 self-start">{statusLabel}</Badge>
 	<p class="text-muted-foreground text-[13.5px] text-pretty col-span-full m-0">{description}</p>
@@ -64,5 +65,4 @@
 			{/each}
 		</div>
 	{/if}
-	{@render children?.()}
 </a>
