@@ -67,6 +67,25 @@
 
 <svelte:head>
 	<title>FreeOxide | Open-Source Rust, Held to the Metal</title>
+	<meta name="description" content="Open-source Rust, held to the metal. Tools built with real tests, real audits. Every project gets finished quality." />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="FreeOxide | Open-Source Rust, Held to the Metal" />
+	<meta property="og:description" content="Open-source Rust, held to the metal. Tools built with real tests, real audits." />
+	<meta property="og:image" content="https://freeoxide.com/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:site_name" content="FreeOxide" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="FreeOxide | Open-Source Rust, Held to the Metal" />
+	<meta name="twitter:description" content="Open-source Rust, held to the metal." />
+	<meta name="twitter:image" content="https://freeoxide.com/og-image.png" />
+
+	<link rel="canonical" href="https://freeoxide.com/" />
+
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link

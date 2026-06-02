@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#15100c"/>
+
+  <!-- Logo mark (scaled and centered) -->
+  <g transform="translate(460, 80) scale(0.28)">
+    <g fill="none" stroke="#f26419">
+      <line x1="352" y1="404" x2="590" y2="258" stroke-width="10" stroke-linecap="butt"/>
+      <line x1="666" y1="258" x2="907" y2="407" stroke-width="10" stroke-linecap="butt"/>
+      <line x1="313" y1="460" x2="313" y2="763" stroke-width="10" stroke-linecap="butt"/>
+      <line x1="943" y1="460" x2="943" y2="763" stroke-width="10" stroke-linecap="butt"/>
+      <line x1="351" y1="814" x2="595" y2="964" stroke-width="10" stroke-linecap="butt"/>
+      <line x1="661" y1="964" x2="906" y2="814" stroke-width="10" stroke-linecap="butt"/>
+      <polyline points="433,575 394,614 433,653" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="823,575 862,614 823,653" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g fill="#f26419">
+      <circle cx="627" cy="239" r="16"/>
+      <circle cx="315" cy="426" r="16"/>
+      <circle cx="941" cy="426" r="16"/>
+      <circle cx="315" cy="798" r="16"/>
+      <circle cx="941" cy="798" r="16"/>
+      <circle cx="627" cy="980" r="16"/>
+      <path d="M 614.31 478.71 L 619.25 459.25 L 636.75 459.25 L 641.69 478.71 L 646.13 479.25 L 655.58 461.54 L 672.57 465.73 L 672.71 485.80 L 676.89 487.39 L 690.30 472.45 L 705.81 480.59 L 701.14 500.11 L 704.81 502.65 L 721.41 491.36 L 734.51 502.97 L 725.31 520.81 L 728.27 524.15 L 747.09 517.16 L 757.03 531.57 L 743.83 546.69 L 745.90 550.64 L 765.85 548.36 L 772.05 564.73 L 755.61 576.25 L 756.68 580.58 L 776.59 583.14 L 778.70 600.52 L 759.98 607.77 L 759.98 612.23 L 778.70 619.48 L 776.59 636.86 L 756.68 639.42 L 755.61 643.75 L 772.05 655.27 L 765.85 671.64 L 745.90 669.36 L 743.83 673.31 L 757.03 688.43 L 747.09 702.84 L 728.27 695.85 L 725.31 699.19 L 734.51 717.03 L 721.41 728.64 L 704.81 717.35 L 701.14 719.89 L 705.81 739.41 L 690.30 747.55 L 676.89 732.61 L 672.71 734.20 L 672.57 754.27 L 655.58 758.46 L 646.13 740.75 L 641.69 741.29 L 636.75 760.75 L 619.25 760.75 L 614.31 741.29 L 609.87 740.75 L 600.42 758.46 L 583.43 754.27 L 583.29 734.20 L 579.11 732.61 L 565.70 747.55 L 550.19 739.41 L 554.86 719.89 L 551.19 717.35 L 534.59 728.64 L 521.49 717.03 L 530.69 699.19 L 527.73 695.85 L 508.91 702.84 L 498.97 688.43 L 512.17 673.31 L 510.10 669.36 L 490.15 671.64 L 483.95 655.27 L 500.39 643.75 L 499.32 639.42 L 479.41 636.86 L 477.30 619.48 L 496.02 612.23 L 496.02 607.77 L 477.30 600.52 L 479.41 583.14 L 499.32 580.58 L 500.39 576.25 L 483.95 564.73 L 490.15 548.36 L 510.10 550.64 L 512.17 546.69 L 498.97 531.57 L 508.91 517.16 L 527.73 524.15 L 530.69 520.81 L 521.49 502.97 L 534.59 491.36 L 551.19 502.65 L 554.86 500.11 L 550.19 480.59 L 565.70 472.45 L 579.11 487.39 L 583.29 485.80 L 583.43 465.73 L 600.42 461.54 L 609.87 479.25 Z M 743.00 610.00 A 115 115 0 1 0 513.00 610.00 A 115 115 0 1 0 743.00 610.00 Z" fill-rule="evenodd"/>
+    </g>
+    <g stroke="#f26419" fill="#f26419">
+      <line x1="628.00" y1="565.00" x2="628.00" y2="494.00" stroke-width="14" stroke-linecap="butt"/>
+      <line x1="628.00" y1="655.00" x2="628.00" y2="726.00" stroke-width="14" stroke-linecap="butt"/>
+      <line x1="666.97" y1="587.50" x2="728.46" y2="552.00" stroke-width="14" stroke-linecap="butt"/>
+      <line x1="589.03" y1="587.50" x2="527.54" y2="552.00" stroke-width="14" stroke-linecap="butt"/>
+      <line x1="666.97" y1="632.50" x2="728.46" y2="668.00" stroke-width="14" stroke-linecap="butt"/>
+      <line x1="589.03" y1="632.50" x2="527.54" y2="668.00" stroke-width="14" stroke-linecap="butt"/>
+      <circle cx="628" cy="610" r="61"/>
+      <circle cx="628" cy="610" r="32" fill="#15100c"/>
+    </g>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="480" text-anchor="middle" font-family="monospace" font-weight="700" font-size="64" fill="#ece2d6">
+    free<tspan fill="#f26419">oxide</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="530" text-anchor="middle" font-family="monospace" font-weight="400" font-size="24" fill="#9a8c7b">
+    Open-Source Rust, Held to the Metal
+  </text>
+</svg>
