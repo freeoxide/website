@@ -16,7 +16,6 @@
 		{#each [
 			{ href: '#standards', label: 'standards' },
 			{ href: '#projects', label: 'projects' },
-			{ href: '#contribute', label: 'contribute' },
 		] as link}
 			<a
 				href={link.href}
