@@ -13,12 +13,9 @@
   import Footer from '$lib/components/landing/Footer.svelte';
   import CrtOverlay from '$lib/components/landing/CrtOverlay.svelte';
   import TweaksPanel from '$lib/components/landing/TweaksPanel.svelte';
-
   import { getState as getTheme, TAGLINES, FONTS } from '$lib/stores/theme.svelte';
 
   const theme = getTheme();
-
-  import './crt-theme.css';
 
   let bootComplete = $state(false);
 

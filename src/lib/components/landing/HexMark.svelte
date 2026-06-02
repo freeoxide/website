@@ -54,6 +54,6 @@
     <!-- filled center -->
     <circle cx="628" cy="610" r="61" fill="currentColor" stroke="none" />
     <!-- knockout -->
-    <circle cx="628" cy="610" r="30" fill="var(--bg)" stroke="none" />
+    <circle cx="628" cy="610" r="30" fill="var(--background)" stroke="none" />
   </g>
 </svg>

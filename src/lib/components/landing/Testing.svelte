@@ -32,9 +32,9 @@
 
   <div class="ladder reveal" aria-label="a typical edge-case run">
     <div class="rung"><span class="n">01</span><span class="lbl">baseline suite</span><span class="find">happy paths + the obvious errors</span></div>
-    <div class="rung"><span class="n">02</span><span class="lbl">round two</span><span class="find"><b>+</b> boundary values, empty & max inputs</span></div>
+    <div class="rung"><span class="n">02</span><span class="lbl">round two</span><span class="find"><b>+</b> boundary values, empty &amp; max inputs</span></div>
     <div class="rung"><span class="n">03</span><span class="lbl">round three</span><span class="find"><b>+</b> unicode, encoding, locale edge cases</span></div>
-    <div class="rung"><span class="n">04</span><span class="lbl">round four</span><span class="find"><b>+</b> concurrency, ordering & race conditions</span></div>
+    <div class="rung"><span class="n">04</span><span class="lbl">round four</span><span class="find"><b>+</b> concurrency, ordering &amp; race conditions</span></div>
     <div class="rung"><span class="n">05</span><span class="lbl">rounds five–eight</span><span class="find"><b>+</b> the weird ones you'd never write by hand</span></div>
   </div>
   <p class="comment reveal" style="margin-top:16px;">slower on purpose. no stone left unturned.</p>

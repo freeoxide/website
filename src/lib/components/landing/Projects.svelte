@@ -17,7 +17,7 @@
       <div class="pname">vps-harden <span class="star">↗</span></div>
       <span class="badge wip">in&nbsp;progress</span>
       <div class="pdesc">Harden a fresh VPS with one auditable command. Sensible, reversible, opinionated defaults.</div>
-      <div class="pmeta"><span><b>lang</b> Rust</span><span><b>type</b> CLI</span><span><b>status</b> hardening & testing</span></div>
+      <div class="pmeta"><span><b>lang</b> Rust</span><span><b>type</b> CLI</span><span><b>status</b> hardening &amp; testing</span></div>
     </a>
     <a class="proj reveal" href="#contribute">
       <div class="pname">agent-config <span class="star">↗</span></div>
