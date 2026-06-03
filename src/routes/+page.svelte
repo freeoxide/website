@@ -7,6 +7,7 @@
 	import OxideLattice from '$lib/components/three/OxideLattice.svelte';
 	import Standards from '$lib/components/landing/Standards.svelte';
 	import Projects from '$lib/components/landing/Projects.svelte';
+	import About from '$lib/components/landing/About.svelte';
 	import Footer from '$lib/components/landing/Footer.svelte';
 	import CrtOverlay from '$lib/components/landing/CrtOverlay.svelte';
 	import TweaksPanel from '$lib/components/landing/TweaksPanel.svelte';
@@ -156,6 +157,8 @@
 
 		<Standards />
 		<Projects />
+
+		<About />
 	</main>
 
 	<Footer />
