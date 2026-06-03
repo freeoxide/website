@@ -140,7 +140,7 @@
 				<div class="flex flex-wrap gap-3 reveal">
 					<Button variant="default" size="lg" href="#projects">browse the projects →</Button>
 					<Button variant="outline" size="lg" href="#standards">./about.md</Button>
-					<Button variant="outline" size="lg" href="https://github.com" target="_blank" rel="noopener">github ↗</Button>
+					<Button variant="outline" size="lg" href="https://github.com/freeoxide" target="_blank" rel="noopener">github ↗</Button>
 				</div>
 
 				<div class="reveal">
