@@ -15,7 +15,7 @@
 		<div class="reveal">
 			<ProjectCard
 				name="gpui-starter"
-				href="https://github.com/hmziqrs/gpui-starter"
+				href="https://github.com/hmziqrs/gpui-starter?ref=freeoxide.com"
 				target="_blank"
 				rel="noopener"
 				status="shipped"
@@ -30,7 +30,7 @@
 				<Button
 					variant="ghost"
 					size="sm"
-					href="https://gpui-starter.hmziq.xyz"
+					href="https://gpui-starter.hmziq.xyz?ref=freeoxide.com"
 					target="_blank"
 					rel="noopener"
 					onclick={(e) => e.stopPropagation()}

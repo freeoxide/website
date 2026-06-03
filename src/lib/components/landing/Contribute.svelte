@@ -19,7 +19,7 @@
 	</div>
 	<div class="mt-6 flex gap-3 flex-wrap items-center reveal">
 		<Button variant="default" size="lg" href="#projects">browse the projects →</Button>
-		<Button variant="outline" size="lg" href="https://github.com" target="_blank" rel="noopener">github ↗</Button>
+		<Button variant="outline" size="lg" href="https://github.com/freeoxide?ref=freeoxide.com" target="_blank" rel="noopener">github ↗</Button>
 		<span class="text-crt-faint before:content-['# '] m-0">good first issues are tagged.</span>
 	</div>
 </section>
