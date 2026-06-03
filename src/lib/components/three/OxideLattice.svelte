@@ -1,6 +1,26 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-  import * as THREE from 'three';
+  import {
+    WebGLRenderer,
+    Scene,
+    PerspectiveCamera,
+    Group,
+    Points,
+    PointsMaterial,
+    BufferGeometry,
+    BufferAttribute,
+    LineSegments,
+    LineBasicMaterial,
+    Sprite,
+    SpriteMaterial,
+    Raycaster,
+    Clock,
+    FogExp2,
+    CanvasTexture,
+    Vector3,
+    Vector2,
+    Color
+  } from 'three';
 
   let {
     containerClass = 'hero-3d'
@@ -62,7 +82,7 @@
     }
 
     // ── renderer / scene / camera ───────────────────────────────────────────
-    const renderer = new THREE.WebGLRenderer({
+    const renderer = new WebGLRenderer({
       antialias: true,
       alpha: true,
       powerPreference: 'high-performance'
@@ -71,35 +91,35 @@
     renderer.setClearColor(0x000000, 0);
     host.appendChild(renderer.domElement);
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x15100c, 0.05);
+    const scene = new Scene();
+    scene.fog = new FogExp2(0x15100c, 0.05);
 
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+    const camera = new PerspectiveCamera(38, 1, 0.1, 100);
     camera.position.set(0, 0, 16);
 
-    const group = new THREE.Group();
+    const group = new Group();
     group.position.x = 2.2;
     group.rotation.x = 0.34;
     group.scale.setScalar(1.05);
     scene.add(group);
 
     // ── build the lattice (two interpenetrating sublattices: Fe and O) ───────
-    const A1 = new THREE.Vector3(1, 0, 0);
-    const A2 = new THREE.Vector3(0.5, 0.8660254, 0);
-    const A3 = new THREE.Vector3(0, 0, 1.05);
+    const A1 = new Vector3(1, 0, 0);
+    const A2 = new Vector3(0.5, 0.8660254, 0);
+    const A3 = new Vector3(0, 0, 1.05);
     const Rlat = 3.5;
 
-    function key(p: THREE.Vector3): string {
+    function key(p: Vector3): string {
       return Math.round(p.x * 100) + '_' + Math.round(p.y * 100) + '_' + Math.round(p.z * 100);
     }
 
     // Fe sublattice
-    const feLocal: THREE.Vector3[] = [];
+    const feLocal: Vector3[] = [];
     const seen: Record<string, number> = {};
     for (let i = -4; i <= 4; i++)
       for (let j = -4; j <= 4; j++)
         for (let k = -3; k <= 3; k++) {
-          const p = new THREE.Vector3()
+          const p = new Vector3()
             .addScaledVector(A1, i)
             .addScaledVector(A2, j)
             .addScaledVector(A3, k);
@@ -113,17 +133,17 @@
         }
 
     // O sublattice: octahedral-ish offsets either side of each cell origin.
-    const OFF = new THREE.Vector3()
+    const OFF = new Vector3()
       .addScaledVector(A1, 1 / 3)
       .addScaledVector(A2, 1 / 3)
       .addScaledVector(A3, 0.5);
     const OFFS = [OFF, OFF.clone().multiplyScalar(-1)];
-    const oLocal: THREE.Vector3[] = [];
+    const oLocal: Vector3[] = [];
     const seenO: Record<string, number> = {};
     for (let ii = -4; ii <= 4; ii++)
       for (let jj = -4; jj <= 4; jj++)
         for (let kk = -3; kk <= 3; kk++) {
-          const base = new THREE.Vector3()
+          const base = new Vector3()
             .addScaledVector(A1, ii)
             .addScaledVector(A2, jj)
             .addScaledVector(A3, kk);
@@ -160,7 +180,7 @@
     const bondCount = bondPos.length / 6;
 
     // ── textures (crisp disc, thin ring) ──────────────────────────────────────
-    function discTex(): THREE.CanvasTexture {
+    function discTex(): CanvasTexture {
       const s = 64;
       const c = document.createElement('canvas');
       c.width = c.height = s;
@@ -169,13 +189,13 @@
       x.arc(s / 2, s / 2, s / 2 - 6, 0, Math.PI * 2);
       x.fillStyle = '#fff';
       x.fill();
-      const t = new THREE.CanvasTexture(c);
+      const t = new CanvasTexture(c);
       t.needsUpdate = true;
       pushDisposable(t);
       return t;
     }
 
-    function ringTex(): THREE.CanvasTexture {
+    function ringTex(): CanvasTexture {
       const s = 128;
       const c = document.createElement('canvas');
       c.width = c.height = s;
@@ -196,7 +216,7 @@
         x.lineTo(pt[0] + dx, pt[1] + dy);
         x.stroke();
       }
-      const t = new THREE.CanvasTexture(c);
+      const t = new CanvasTexture(c);
       t.needsUpdate = true;
       pushDisposable(t);
       return t;
@@ -205,7 +225,7 @@
     const disc = discTex();
 
     // ── materials (unlit, tinted white textures) ────────────────────────────
-    const feMat = new THREE.PointsMaterial({
+    const feMat = new PointsMaterial({
       size: 0.34,
       map: disc,
       transparent: true,
@@ -215,7 +235,7 @@
     });
     pushDisposable(feMat);
 
-    const oMat = new THREE.PointsMaterial({
+    const oMat = new PointsMaterial({
       size: 0.19,
       map: disc,
       transparent: true,
@@ -226,46 +246,46 @@
     });
     pushDisposable(oMat);
 
-    const bondMat = new THREE.LineBasicMaterial({
+    const bondMat = new LineBasicMaterial({
       transparent: true,
       opacity: 0.22
     });
     pushDisposable(bondMat);
 
-    const cageMat = new THREE.LineBasicMaterial({
+    const cageMat = new LineBasicMaterial({
       transparent: true,
       opacity: 0.16
     });
     pushDisposable(cageMat);
 
-    function pointsGeom(list: THREE.Vector3[]): THREE.BufferGeometry {
+    function pointsGeom(list: Vector3[]): BufferGeometry {
       const arr = new Float32Array(list.length * 3);
       for (let n = 0; n < list.length; n++) {
         arr[n * 3] = list[n].x;
         arr[n * 3 + 1] = list[n].y;
         arr[n * 3 + 2] = list[n].z;
       }
-      const g = new THREE.BufferGeometry();
-      g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+      const g = new BufferGeometry();
+      g.setAttribute('position', new BufferAttribute(arr, 3));
       pushDisposable(g);
       return g;
     }
 
-    const fePoints = new THREE.Points(pointsGeom(feLocal), feMat);
-    const oPoints = new THREE.Points(pointsGeom(oLocal), oMat);
+    const fePoints = new Points(pointsGeom(feLocal), feMat);
+    const oPoints = new Points(pointsGeom(oLocal), oMat);
 
-    const bondGeom = new THREE.BufferGeometry();
-    bondGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(bondPos), 3));
+    const bondGeom = new BufferGeometry();
+    bondGeom.setAttribute('position', new BufferAttribute(new Float32Array(bondPos), 3));
     pushDisposable(bondGeom);
-    const bonds = new THREE.LineSegments(bondGeom, bondMat);
+    const bonds = new LineSegments(bondGeom, bondMat);
 
     // hexagonal unit-cell cage
     const Rc = Rlat * 0.99;
     const hc = Rlat * 0.6;
     const cagePts: number[] = [];
-    function corner(idx: number, z: number): THREE.Vector3 {
+    function corner(idx: number, z: number): Vector3 {
       const ang = Math.PI / 6 + idx * Math.PI / 3;
-      return new THREE.Vector3(Math.cos(ang) * Rc, Math.sin(ang) * Rc, z);
+      return new Vector3(Math.cos(ang) * Rc, Math.sin(ang) * Rc, z);
     }
     for (let e = 0; e < 6; e++) {
       const tA = corner(e, hc);
@@ -276,22 +296,22 @@
       cagePts.push(bA.x, bA.y, bA.z, bB.x, bB.y, bB.z); // bottom ring
       cagePts.push(tA.x, tA.y, tA.z, bA.x, bA.y, bA.z); // vertical
     }
-    const cageGeom = new THREE.BufferGeometry();
-    cageGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(cagePts), 3));
+    const cageGeom = new BufferGeometry();
+    cageGeom.setAttribute('position', new BufferAttribute(new Float32Array(cagePts), 3));
     pushDisposable(cageGeom);
-    const cage = new THREE.LineSegments(cageGeom, cageMat);
+    const cage = new LineSegments(cageGeom, cageMat);
 
     group.add(bonds, cage, oPoints, fePoints);
 
     // hover highlight sprite (always faces camera; lives in world space)
-    const ringMat = new THREE.SpriteMaterial({
+    const ringMat = new SpriteMaterial({
       map: ringTex(),
       transparent: true,
       opacity: 0.9,
       depthTest: false
     });
     pushDisposable(ringMat);
-    const ring = new THREE.Sprite(ringMat);
+    const ring = new Sprite(ringMat);
     ring.scale.setScalar(1.2);
     ring.visible = false;
     scene.add(ring);
@@ -369,10 +389,10 @@
     });
 
     // ── raycaster ───────────────────────────────────────────────────────────
-    const ray = new THREE.Raycaster();
+    const ray = new Raycaster();
     ray.params.Points!.threshold = 0.26;
-    const tmp = new THREE.Vector3();
-    const ndcVec2 = new THREE.Vector2();
+    const tmp = new Vector3();
+    const ndcVec2 = new Vector2();
 
     function probe(): void {
       if (!hoverNDC) {
@@ -440,7 +460,7 @@
     }
 
     // ── loop ────────────────────────────────────────────────────────────────
-    const clock = new THREE.Clock();
+    const clock = new Clock();
     function frame(): void {
       animFrameId = requestAnimationFrame(frame);
       if (!visible || document.hidden) return;

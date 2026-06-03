@@ -4,13 +4,11 @@
 	import BootSequence from '$lib/components/landing/BootSequence.svelte';
 	import Typewriter from '$lib/components/landing/Typewriter.svelte';
 	import Wordmark from '$lib/components/landing/Wordmark.svelte';
-	import OxideLattice from '$lib/components/three/OxideLattice.svelte';
 	import Standards from '$lib/components/landing/Standards.svelte';
 	import Projects from '$lib/components/landing/Projects.svelte';
 	import About from '$lib/components/landing/About.svelte';
 	import Footer from '$lib/components/landing/Footer.svelte';
 	import CrtOverlay from '$lib/components/landing/CrtOverlay.svelte';
-	import TweaksPanel from '$lib/components/landing/TweaksPanel.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { StatsStrip } from '$lib/components/ui/stats-strip';
 	import { getState as getTheme, TAGLINES, FONTS } from '$lib/stores/theme.svelte';
@@ -19,12 +17,27 @@
 
 	let bootComplete = $state(false);
 
+	// Lazy-loaded components — defer heavy imports until after initial paint
+	let OxideLattice = $state.raw(null);
+	let TweaksPanel = $state.raw(null);
+
 	$effect(() => {
 		const mono = FONTS[theme.font] ?? FONTS['jetbrains'];
 		document.documentElement.style.setProperty('--mono', mono);
 	});
 
 	onMount(() => {
+		// Defer Three.js + TweaksPanel to next idle tick so they don't block LCP
+		const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+		idle(() => {
+			import('$lib/components/three/OxideLattice.svelte').then((m) => {
+				OxideLattice = m.default;
+			});
+			import('$lib/components/landing/TweaksPanel.svelte').then((m) => {
+				TweaksPanel = m.default;
+			});
+		});
+
 		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (reduce) {
 			document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
@@ -115,7 +128,9 @@
 	<main class="max-w-[var(--maxw)] mx-auto px-[var(--gutter)] pb-20">
 		<!-- HERO SECTION -->
 		<section class="relative pt-[52px] pb-16" data-screen-label="hero">
-			<OxideLattice />
+			{#if OxideLattice}
+				<OxideLattice />
+			{/if}
 			<div class="hero-content">
 				<div class="absolute top-1 right-0 text-right pointer-events-none select-none text-[11.5px] leading-[1.7] tracking-[0.02em] text-crt-faint flex flex-col max-[820px]:hidden" aria-hidden="true">
 					<div><span class="text-muted-foreground after:content-['_›'] after:text-primary after:mx-px">lattice</span> α‑Fe₂O₃ · hematite</div>
@@ -163,5 +178,7 @@
 
 	<Footer />
 	<CrtOverlay scanlines={theme.scanlines} flicker={theme.flicker} />
-	<TweaksPanel />
+	{#if TweaksPanel}
+		<TweaksPanel />
+	{/if}
 </div>

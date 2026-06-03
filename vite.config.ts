@@ -5,6 +5,21 @@ import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
+	build: {
+		// Suppress warnings for chunks that are intentionally large (Three.js)
+		chunkSizeWarningLimit: 600,
+		rolldownOptions: {
+			output: {
+				manualChunks(id) {
+					// Isolate Three.js into its own cacheable chunk — it's the biggest
+					// dependency and changes far less often than app code
+					if (id.includes('node_modules/three')) {
+						return 'three';
+					}
+				}
+			}
+		}
+	},
 	plugins: [
 		tailwindcss(),
 		sveltekit(),
