@@ -40,30 +40,31 @@
 	const hasChildren = $derived(children !== undefined);
 </script>
 
-<!-- Card is always a div — no nested anchor issues -->
 <div
 	data-slot="project-card"
 	class={cn(
-		"grid grid-cols-1fr_auto gap-y-2 gap-x-4 items-center",
+		"flex flex-col gap-2",
 		"p-[18px_20px] border border-border rounded-[9px] bg-card",
 		"transition-[border-color,transform,background-color] duration-150",
 		"hover:border-primary hover:-translate-y-0.5 hover:bg-muted",
 		className
 	)}
 >
-	<div class="text-[17px] font-bold text-foreground flex items-center gap-2.5">
-		<!-- Name links to the main href (GitHub) -->
-		<a bind:this={ref} class="no-underline text-foreground hover:text-primary" {...restProps}>
-			{name}
-			<span class="text-muted-foreground font-normal text-[13px]">↗</span>
-		</a>
-		<!-- Children (e.g. website button) render inline next to the name -->
-		{@render children?.()}
+	<div class="flex items-start justify-between gap-3">
+		<div class="text-[17px] font-bold text-foreground flex items-center gap-2.5 min-w-0">
+			<!-- Name links to the main href (GitHub) -->
+			<a bind:this={ref} class="no-underline text-foreground hover:text-primary" {...restProps}>
+				{name}
+				<span class="text-muted-foreground font-normal text-[13px]">↗</span>
+			</a>
+			<!-- Children (e.g. website button) render inline next to the name -->
+			{@render children?.()}
+		</div>
+		<Badge variant={status}>{statusLabel}</Badge>
 	</div>
-	<Badge variant={status} class="row-start-1 col-start-2 self-start">{statusLabel}</Badge>
-	<p class="text-muted-foreground text-[13.5px] text-pretty col-span-full m-0">{description}</p>
+	<p class="text-muted-foreground text-[13.5px] text-pretty m-0">{description}</p>
 	{#if meta && meta.length}
-		<div class="text-crt-faint text-xs col-span-full flex gap-4 flex-wrap">
+		<div class="text-crt-faint text-xs flex gap-4 flex-wrap">
 			{#each meta as m}
 				<span><b class="text-muted-foreground font-semibold">{m.label}</b> {m.value}</span>
 			{/each}

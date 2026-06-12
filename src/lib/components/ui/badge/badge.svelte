@@ -7,12 +7,12 @@
 		secondary: "border-transparent bg-secondary text-secondary-foreground",
 		destructive: "border-transparent bg-destructive text-white",
 		outline: "text-foreground border-border",
-		shipped: "text-crt-ok border-crt-ok before:content-['●_']",
-		wip: "text-crt-warn border-crt-warn before:content-['◐_']",
-		planned: "text-muted-foreground border-muted-foreground before:content-['○_']",
+		shipped: "text-crt-ok border-crt-ok before:content-['●'] before:mr-1",
+		wip: "text-crt-warn border-crt-warn before:content-['◐'] before:mr-1",
+		planned: "text-muted-foreground border-muted-foreground before:content-['○'] before:mr-1",
 	} as const;
 
-	const base = "inline-flex items-center font-mono text-[11px] font-bold tracking-[0.04em] lowercase px-2 py-[3px] rounded-full border whitespace-nowrap select-none";
+	const base = "inline-flex items-center w-fit font-mono text-[11px] font-bold tracking-[0.04em] lowercase px-2 py-[3px] rounded-full border whitespace-nowrap select-none";
 
 	export function badgeVariants(opts: { variant?: keyof typeof variants } = {}) {
 		return [base, variants[opts.variant ?? "default"]].join(" ");

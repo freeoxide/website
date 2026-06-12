@@ -6,7 +6,7 @@
 </script>
 
 <section id="projects" data-screen-label="projects" class="py-14 border-b border-dashed border-border last:border-b-0">
-	<SectionCmd command="freeoxide projects" output="1 shipped · 2 in progress" />
+	<SectionCmd command="freeoxide projects" output="2 shipped · 2 in progress" />
 	<SectionHeading
 		text="The projects"
 		sub="Small in number, deliberately. Each one ships only once it clears every standard above."
@@ -39,10 +39,35 @@
 		</div>
 		<div class="reveal">
 			<ProjectCard
+				name="gpui-query"
+				href="https://github.com/hmziqrs/gpui-query?ref=freeoxide.com"
+				target="_blank"
+				rel="noopener"
+				status="shipped"
+				statusLabel="shipped"
+				description="Reactive async queries for GPUI apps. Fetch, cache, and invalidate — without leaving the render tree."
+				meta={[
+					{ label: 'lang', value: 'Rust' },
+					{ label: 'stack', value: 'GPUI' },
+					{ label: 'license', value: 'MIT / Apache-2.0' },
+				]}
+			>
+				<Button
+					variant="ghost"
+					size="sm"
+					href="https://gpui-query.hmziq.xyz?ref=freeoxide.com"
+					target="_blank"
+					rel="noopener"
+					onclick={(e) => e.stopPropagation()}
+				>website</Button>
+			</ProjectCard>
+		</div>
+		<div class="reveal">
+			<ProjectCard
 				name="vps-harden"
 				href="#contribute"
 				status="wip"
-				statusLabel="in&nbsp;progress"
+				statusLabel="in progress"
 				description="Harden a fresh VPS with one auditable command. Sensible, reversible, opinionated defaults."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
