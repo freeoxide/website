@@ -18,7 +18,9 @@
 	let bootComplete = $state(false);
 
 	// Lazy-loaded components — defer heavy imports until after initial paint
+	/** @type {import('svelte').Component<any, any> | null} */
 	let OxideLattice = $state.raw(null);
+	/** @type {import('svelte').Component<any, any> | null} */
 	let TweaksPanel = $state.raw(null);
 
 	$effect(() => {

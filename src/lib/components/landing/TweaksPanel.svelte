@@ -92,6 +92,7 @@
       <label class="flex flex-col gap-1">
         <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Terminal flavor</span>
         <Select
+          type="single"
           value={theme.flavor}
           onValueChange={(v) => { if (v) setFlavor(v); }}
         >
@@ -123,6 +124,7 @@
       <label class="flex flex-col gap-1">
         <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Wordmark</span>
         <Select
+          type="single"
           value={theme.font}
           onValueChange={(v) => { if (v) setFont(v); }}
         >
@@ -141,6 +143,7 @@
       <label class="flex flex-col gap-1">
         <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Tagline</span>
         <Select
+          type="single"
           value={theme.tagline}
           onValueChange={(v) => { if (v) setTagline(v); }}
         >
