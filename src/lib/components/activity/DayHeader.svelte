@@ -31,7 +31,11 @@
 	});
 </script>
 
-<div class="text-crt-faint text-[12.5px] mt-5 mb-1.5 select-none whitespace-pre-wrap break-words">
-	── <span class="text-muted-foreground">{label}</span>{#if relative}<span> · {relative}</span>{/if} · {count}
-	{count === 1 ? 'event' : 'events'} ──
+<div class="mt-5 mb-1.5 flex items-center gap-3 text-[12.5px] text-crt-faint select-none">
+	<span class="h-px flex-1 bg-border"></span>
+	<span class="whitespace-nowrap">
+		<span class="text-muted-foreground">{label}</span>{#if relative} · {relative}{/if} · {count}
+		{count === 1 ? 'event' : 'events'}
+	</span>
+	<span class="h-px flex-1 bg-border"></span>
 </div>
