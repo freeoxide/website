@@ -14,7 +14,11 @@ const config = {
 			strict: true
 		}),
 		prerender: {
-			handleMissingId: 'warn'
+			handleMissingId: 'warn',
+			// Belt-and-suspenders: the /activity load catches every fetch failure
+			// and degrades to an error state instead of throwing, but keep a failed
+			// build-time fetch from ever aborting a deploy of the whole site.
+			handleHttpError: 'warn'
 		}
 	}
 };

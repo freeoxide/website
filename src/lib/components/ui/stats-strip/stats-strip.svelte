@@ -33,7 +33,7 @@
 >
 	{#each stats as stat}
 		<div class="bg-card p-[18px_20px]">
-			<div class="text-[clamp(22px,3vw,30px)] font-extrabold text-primary tracking-tight">{@html stat.value}</div>
+			<div class="text-[clamp(22px,3vw,30px)] font-extrabold text-primary tracking-tight">{stat.value}</div>
 			<div class="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
 		</div>
 	{/each}
