@@ -5,10 +5,8 @@
     toggleScanlines,
     toggleFlicker,
     setFont,
-    setTagline,
     FLAVORS,
     FONTS,
-    TAGLINES,
   } from "$lib/stores/theme.svelte";
   import { Switch } from '$lib/components/ui/switch';
   import { Select } from '$lib/components/ui/select';
@@ -139,24 +137,6 @@
         </Select>
       </label>
 
-      <!-- Tagline -->
-      <label class="flex flex-col gap-1">
-        <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Tagline</span>
-        <Select
-          type="single"
-          value={theme.tagline}
-          onValueChange={(v) => { if (v) setTagline(v); }}
-        >
-          <SelectTrigger class="h-8 text-xs font-mono bg-popover text-popover-foreground border-border">
-            {TAGLINES[theme.tagline] ?? theme.tagline}
-          </SelectTrigger>
-          <SelectContent class="font-mono z-[2147483647]">
-            {#each Object.entries(TAGLINES) as [key, val]}
-              <SelectItem value={key}>{val}</SelectItem>
-            {/each}
-          </SelectContent>
-        </Select>
-      </label>
     </div>
   </div>
 {/if}

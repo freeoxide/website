@@ -1,3 +1,5 @@
+import { browser } from "$app/environment";
+
 export const TAGLINES: Record<string, string> = {
   standard: "Open-source Rust, built to a standard.",
   boring: "Every release earns it.",
@@ -24,13 +26,64 @@ export const FLAVORS: { value: string; label: string }[] = [
   { value: "charm-light", label: "Charm Light — magenta on paper" },
 ];
 
-let theme = $state({
+type FontKey = "jetbrains" | "plex" | "system";
+
+type ThemeState = {
+  flavor: string;
+  scanlines: boolean;
+  flicker: boolean;
+  font: FontKey;
+};
+
+const STORAGE_KEY = "freeoxide:theme";
+
+const DEFAULTS: ThemeState = {
   flavor: "oxide",
   scanlines: true,
   flicker: false,
-  font: "jetbrains" as "jetbrains" | "plex" | "system",
-  tagline: "standard",
-});
+  font: "jetbrains",
+};
+
+function isFontKey(value: unknown): value is FontKey {
+  return value === "jetbrains" || value === "plex" || value === "system";
+}
+
+/** Hydrate from localStorage, falling back to defaults on SSR / first visit / corrupt data. */
+function loadTheme(): ThemeState {
+  if (!browser) return { ...DEFAULTS };
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { ...DEFAULTS };
+    const parsed = JSON.parse(raw) as Partial<ThemeState>;
+    return {
+      flavor: typeof parsed.flavor === "string" ? parsed.flavor : DEFAULTS.flavor,
+      scanlines: typeof parsed.scanlines === "boolean" ? parsed.scanlines : DEFAULTS.scanlines,
+      flicker: typeof parsed.flicker === "boolean" ? parsed.flicker : DEFAULTS.flicker,
+      font: isFontKey(parsed.font) ? parsed.font : DEFAULTS.font,
+    };
+  } catch {
+    return { ...DEFAULTS };
+  }
+}
+
+let theme = $state<ThemeState>(loadTheme());
+
+function persist(): void {
+  if (!browser) return;
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        flavor: theme.flavor,
+        scanlines: theme.scanlines,
+        flicker: theme.flicker,
+        font: theme.font,
+      }),
+    );
+  } catch {
+    // Ignore quota / private-mode write failures — theme still works in-session.
+  }
+}
 
 export function getState() {
   return theme;
@@ -38,22 +91,22 @@ export function getState() {
 
 export function setFlavor(flavor: string): void {
   theme.flavor = flavor;
+  persist();
 }
 
 export function toggleScanlines(): void {
   theme.scanlines = !theme.scanlines;
+  persist();
 }
 
 export function toggleFlicker(): void {
   theme.flicker = !theme.flicker;
+  persist();
 }
 
 export function setFont(font: string): void {
-  if (font === "jetbrains" || font === "plex" || font === "system") {
+  if (isFontKey(font)) {
     theme.font = font;
+    persist();
   }
-}
-
-export function setTagline(tagline: string): void {
-  theme.tagline = tagline;
 }

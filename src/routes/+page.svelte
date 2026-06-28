@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import Statusbar from '$lib/components/landing/Statusbar.svelte';
 	import BootSequence from '$lib/components/landing/BootSequence.svelte';
-	import Typewriter from '$lib/components/landing/Typewriter.svelte';
+	import TaglineRotator from '$lib/components/landing/TaglineRotator.svelte';
 	import Wordmark from '$lib/components/landing/Wordmark.svelte';
 	import Standards from '$lib/components/landing/Standards.svelte';
 	import Projects from '$lib/components/landing/Projects.svelte';
@@ -11,7 +11,7 @@
 	import CrtOverlay from '$lib/components/landing/CrtOverlay.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { StatsStrip } from '$lib/components/ui/stats-strip';
-	import { getState as getTheme, TAGLINES, FONTS } from '$lib/stores/theme.svelte';
+	import { getState as getTheme, FONTS } from '$lib/stores/theme.svelte';
 
 	const theme = getTheme();
 
@@ -146,7 +146,7 @@
 
 				<p class="text-[clamp(18px,2.6vw,26px)] text-foreground m-0 mb-3.5 font-medium min-h-[1.4em]">
 					{#if bootComplete}
-						<Typewriter text={TAGLINES[theme.tagline]} />
+						<TaglineRotator />
 					{/if}
 				</p>
 
