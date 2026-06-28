@@ -19,6 +19,7 @@ export const INITIATIVE_REPOS = [
 	{ owner: 'freeoxide', repo: 'website' },
 	{ owner: 'freeoxide', repo: 'pi-door-security' },
 	{ owner: 'freeoxide', repo: 'gpui-form' },
+	{ owner: 'freeoxide', repo: 'tunnel' },
 ] as const;
 
 export const INITIATIVE_WINDOW_DAYS = 365;
