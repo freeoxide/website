@@ -36,8 +36,6 @@
 		children,
 		...restProps
 	}: ProjectCardProps = $props();
-
-	const hasChildren = $derived(children !== undefined);
 </script>
 
 <div
@@ -64,9 +62,10 @@
 	</div>
 	<p class="text-muted-foreground text-[13.5px] text-pretty m-0">{description}</p>
 	{#if meta && meta.length}
-		<div class="text-crt-faint text-xs flex gap-4 flex-wrap">
-			{#each meta as m}
-				<span><b class="text-muted-foreground font-semibold">{m.label}</b> {m.value}</span>
+		<div class="font-mono text-xs flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
+			{#each meta as m, i (m.label)}
+				{#if i > 0}<span class="text-crt-faint select-none" aria-hidden="true">·</span>{/if}
+				<span class="whitespace-nowrap"><span class="text-primary">{m.label}</span> <span class="text-foreground">{m.value}</span></span>
 			{/each}
 		</div>
 	{/if}
