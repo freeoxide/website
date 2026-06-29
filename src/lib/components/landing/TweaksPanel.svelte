@@ -5,10 +5,8 @@
     toggleScanlines,
     toggleFlicker,
     setFont,
-    setTagline,
     FLAVORS,
     FONTS,
-    TAGLINES,
   } from "$lib/stores/theme.svelte";
   import { Switch } from '$lib/components/ui/switch';
   import { Select } from '$lib/components/ui/select';
@@ -67,7 +65,7 @@
 
 {#if open}
   <div
-    class="fixed z-[2147483646] w-[280px] bg-card/90 backdrop-blur-2xl backdrop-saturate-[160%] border border-border rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.18)] font-mono text-foreground overflow-hidden select-none"
+    class="fixed z-[2147483646] w-[280px] bg-card/90 backdrop-blur-2xl backdrop-saturate-[160%] border border-border rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.18)] font-mono text-foreground select-none"
     style="right:{panelX}px; bottom:{panelY}px;"
     role="dialog"
     aria-label="Visual tweaks panel"
@@ -75,7 +73,7 @@
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
-      class="flex items-center justify-between px-3 py-2 bg-background/40 cursor-grab border-b border-border active:cursor-grabbing"
+      class="flex items-center justify-between px-3 py-2 bg-background/40 cursor-grab border-b border-border rounded-t-xl active:cursor-grabbing"
       bind:this={titleBarEl}
       onpointerdown={handlePointerDown}
       onpointermove={handlePointerMove}
@@ -92,13 +90,14 @@
       <label class="flex flex-col gap-1">
         <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Terminal flavor</span>
         <Select
+          type="single"
           value={theme.flavor}
           onValueChange={(v) => { if (v) setFlavor(v); }}
         >
           <SelectTrigger class="h-8 text-xs font-mono bg-popover text-popover-foreground border-border">
             {FLAVORS.find(f => f.value === theme.flavor)?.label ?? theme.flavor}
           </SelectTrigger>
-          <SelectContent class="font-mono">
+          <SelectContent class="font-mono z-[2147483647]">
             {#each FLAVORS as f}
               <SelectItem value={f.value}>{f.label}</SelectItem>
             {/each}
@@ -123,13 +122,14 @@
       <label class="flex flex-col gap-1">
         <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Wordmark</span>
         <Select
+          type="single"
           value={theme.font}
           onValueChange={(v) => { if (v) setFont(v); }}
         >
           <SelectTrigger class="h-8 text-xs font-mono bg-popover text-popover-foreground border-border">
             {theme.font}
           </SelectTrigger>
-          <SelectContent class="font-mono">
+          <SelectContent class="font-mono z-[2147483647]">
             {#each Object.keys(FONTS) as key}
               <SelectItem value={key}>{key}</SelectItem>
             {/each}
@@ -137,23 +137,6 @@
         </Select>
       </label>
 
-      <!-- Tagline -->
-      <label class="flex flex-col gap-1">
-        <span class="text-[10px] font-semibold uppercase tracking-[0.07em] text-muted-foreground">Tagline</span>
-        <Select
-          value={theme.tagline}
-          onValueChange={(v) => { if (v) setTagline(v); }}
-        >
-          <SelectTrigger class="h-8 text-xs font-mono bg-popover text-popover-foreground border-border">
-            {TAGLINES[theme.tagline] ?? theme.tagline}
-          </SelectTrigger>
-          <SelectContent class="font-mono">
-            {#each Object.entries(TAGLINES) as [key, val]}
-              <SelectItem value={key}>{val}</SelectItem>
-            {/each}
-          </SelectContent>
-        </Select>
-      </label>
     </div>
   </div>
 {/if}

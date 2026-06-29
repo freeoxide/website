@@ -6,7 +6,7 @@
 </script>
 
 <section id="projects" data-screen-label="projects" class="py-14 border-b border-dashed border-border last:border-b-0">
-	<SectionCmd command="freeoxide projects" output="2 shipped · 2 in progress" />
+	<SectionCmd command="freeoxide projects" output="3 shipped · 2 in progress" />
 	<SectionHeading
 		text="The projects"
 		sub="Small in number, deliberately. Each one ships only once it clears every standard above."
@@ -56,6 +56,31 @@
 					variant="ghost"
 					size="sm"
 					href="https://gpui-query.hmziq.xyz?ref=freeoxide.com"
+					target="_blank"
+					rel="noopener"
+					onclick={(e) => e.stopPropagation()}
+				>website</Button>
+			</ProjectCard>
+		</div>
+		<div class="reveal">
+			<ProjectCard
+				name="tunnel"
+				href="https://github.com/freeoxide/tunnel?ref=freeoxide.com"
+				target="_blank"
+				rel="noopener"
+				status="shipped"
+				statusLabel="shipped"
+				description="Expose local services to the public internet over a fast, encrypted tunnel. One binary, one command — no config files, no daemon to babysit."
+				meta={[
+					{ label: 'lang', value: 'Rust' },
+					{ label: 'bin', value: 'ft' },
+					{ label: 'license', value: 'MIT' },
+				]}
+			>
+				<Button
+					variant="ghost"
+					size="sm"
+					href="https://tunnel.freeoxide.com?ref=freeoxide.com"
 					target="_blank"
 					rel="noopener"
 					onclick={(e) => e.stopPropagation()}

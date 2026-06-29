@@ -31,6 +31,10 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          # Authenticated (5000/hr vs unauth 60/hr) so the shared-Actions-IP rate
+          # limit can't silently truncate the /activity feed at build time.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
