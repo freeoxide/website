@@ -81,8 +81,8 @@
 	const footerStatus = $derived(
 		(
 			[
-				data.repoErrors.length && `partial — ${data.repoErrors.join(', ')} unavailable`,
-				data.truncated.length && `counts capped — ${data.truncated.join(', ')} hit the item limit`,
+				data.repoErrors.length && `partial: ${data.repoErrors.join(', ')} unavailable`,
+				data.truncated.length && `counts capped: ${data.truncated.join(', ')} hit the item limit`,
 			]
 				.filter(Boolean)
 				.join(' · ') || 'source: live github snapshot'
@@ -91,13 +91,13 @@
 </script>
 
 <svelte:head>
-	<title>FreeOxide — initiative activity log</title>
+	<title>FreeOxide: initiative activity log</title>
 	<meta
 		name="description"
 		content="A build-time snapshot of every commit, pull request, and release across the FreeOxide initiative repos."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="FreeOxide — initiative activity log" />
+	<meta property="og:title" content="FreeOxide: initiative activity log" />
 	<meta
 		property="og:description"
 		content="Commits, PRs, and releases across the FreeOxide initiative repos."
@@ -135,7 +135,7 @@
 			/>
 			<SectionHeading
 				text="initiative activity"
-				sub="A build-time snapshot of every commit, pull request, and release across the FreeOxide repos. Refreshes on every deploy — not live, but it never rate-limits you either."
+				sub="A build-time snapshot of every commit, pull request, and release across the FreeOxide repos. It refreshes on every deploy. Not live, but it never rate-limits you either."
 			/>
 		</section>
 
@@ -153,7 +153,7 @@
 			<TerminalPanel title="freeoxide@initiative: ~/activity">
 				<div class="bootln text-[13px] leading-[1.8]">
 					<span class="text-destructive">[ fail ]</span>
-					<span class="text-muted-foreground"> github api unreachable — feed offline.</span>
+					<span class="text-muted-foreground"> github api unreachable: feed offline.</span>
 				</div>
 				<div class="text-crt-faint text-[13px] leading-[1.8] mt-1">
 					this is a build-time snapshot; it'll resync on the next deploy.<br />

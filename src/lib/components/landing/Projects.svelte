@@ -45,7 +45,7 @@
 				rel="noopener"
 				status="shipped"
 				statusLabel="shipped"
-				description="Reactive async queries for GPUI apps. Fetch, cache, and invalidate — without leaving the render tree."
+				description="Reactive async queries for GPUI apps. Fetch, cache, and invalidate without leaving the render tree."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
 					{ label: 'stack', value: 'GPUI' },
@@ -70,7 +70,7 @@
 				rel="noopener"
 				status="shipped"
 				statusLabel="shipped"
-				description="Expose local services to the public internet over a fast, encrypted tunnel. One binary, one command — no config files, no daemon to babysit."
+				description="Expose local services to the public internet over a fast, encrypted tunnel. One binary, one command. No config file to write, no daemon to babysit."
 				meta={[
 					{ label: 'lang', value: 'Rust' },
 					{ label: 'bin', value: 'ft' },

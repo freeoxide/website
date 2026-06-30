@@ -12,7 +12,7 @@
 	<div class="max-w-[68ch] reveal">
 		<p class="text-foreground m-0 mb-4.5 text-pretty">
 			<span class="text-foreground font-semibold">hmziq</span>
-			<span class="text-muted-foreground"> — writing Rust, shipping tools, and open-sourcing the results. Every project under FreeOxide is built, tested, and audited by me.</span>
+			<span class="text-muted-foreground">. I write Rust, ship the tools, and open-source the results. Every project under FreeOxide is built, tested, and audited by me.</span>
 		</p>
 	</div>
 	<div class="flex flex-wrap gap-3 reveal">

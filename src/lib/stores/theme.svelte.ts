@@ -15,15 +15,15 @@ export const FONTS: Record<string, string> = {
 };
 
 export const FLAVORS: { value: string; label: string }[] = [
-  { value: "oxide", label: "Oxide — charcoal + rust" },
-  { value: "phosphor", label: "Phosphor — green CRT" },
-  { value: "amber", label: "Amber — retro mono" },
-  { value: "midnight", label: "Midnight — blue TUI" },
-  { value: "dark", label: "Dark — mono" },
-  { value: "light", label: "Light — ink on paper" },
-  { value: "solarized", label: "Solarized — dark" },
-  { value: "charm", label: "Charm — neon pink + purple" },
-  { value: "charm-light", label: "Charm Light — magenta on paper" },
+  { value: "oxide", label: "Oxide · charcoal + rust" },
+  { value: "phosphor", label: "Phosphor · green CRT" },
+  { value: "amber", label: "Amber · retro mono" },
+  { value: "midnight", label: "Midnight · blue TUI" },
+  { value: "dark", label: "Dark · mono" },
+  { value: "light", label: "Light · ink on paper" },
+  { value: "solarized", label: "Solarized · dark" },
+  { value: "charm", label: "Charm · neon pink + purple" },
+  { value: "charm-light", label: "Charm Light · magenta on paper" },
 ];
 
 type FontKey = "jetbrains" | "plex" | "system";
